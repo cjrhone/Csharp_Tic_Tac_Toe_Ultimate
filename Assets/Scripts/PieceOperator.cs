@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PieceOperator : MonoBehaviour
 {
-    public GameObject Piece;
-    public LayerMask layermask;
+    public GameObject piece;
+    public LayerMask layermask; //Research LayerMask
     public float rayLength;
 
     public void Update()
@@ -18,13 +18,13 @@ public class PieceOperator : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, rayLength, layermask))
             {
-                bool isActive = Piece.activeSelf;
-                Piece.SetActive(!isActive);
 
+                Instantiate( piece, hit.transform.position, hit.transform.rotation);
+                // Piece.SetActive(true);
+
+                
                 Debug.Log(hit.collider.name);
             }
-            //DEFINTELY change this to "OnClick" button style pressing
-            //Right now VERY sensitive to button clicks 
         }
         // if(Piece != null)
         // {
