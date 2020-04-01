@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GM : MonoBehaviour
 {
+    public GameObject Xpiece;
+    public GameObject Opiece;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +18,5 @@ public class GM : MonoBehaviour
     {
         
     }
+
 }
