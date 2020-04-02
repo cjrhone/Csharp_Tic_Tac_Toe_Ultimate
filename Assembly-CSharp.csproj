@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\GM.cs" />
      <Compile Include="Assets\Scripts\PieceOperator.cs" />
+     <Compile Include="Assets\Scripts\Turn.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/Users/charlesrhone/Desktop/3D_Stuff/Tic_Tac_Toe_Ultimate/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

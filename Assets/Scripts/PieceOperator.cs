@@ -14,13 +14,14 @@ public class PieceOperator : MonoBehaviour
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         //Research GetMouseButton and EventSystem
         {
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, rayLength, layermask))
             {
 
                 Instantiate( piece, hit.transform.position, hit.transform.rotation);
-                // Piece.SetActive(true);
+                piece.SetActive(true);
 
                 
                 Debug.Log(hit.collider.name);
