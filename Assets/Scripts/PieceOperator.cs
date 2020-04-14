@@ -9,10 +9,16 @@ public class PieceOperator : MonoBehaviour
     public GameObject Piece;
     public GameObject XPiece;
     public GameObject OPiece;
+    public Turn currentTurn;
 
     public Text buttonText;
 
     PlayerPiece currentState;
+
+    void Start()
+    {
+        buttonText.text = "";
+    }
     
 
     public void PlacePiece() 
@@ -21,27 +27,27 @@ public class PieceOperator : MonoBehaviour
         {
             bool isActive = Piece.activeSelf;
             
-            Piece.SetActive(!isActive);
+            Piece.SetActive(!isActive); // May be unecessary but keep for now 
 
             Debug.Log("you clicked: " + Piece);
 
-            buttonText.text = currentState.ToString();
+            buttonText.text = currentTurn.currentState.ToString(); //Placing the Piece
 
-            NextTurn();
+            currentTurn.NextTurn();
 
         }
 
     }
 
-    public void NextTurn()
-    {
-        currentState = (PlayerPiece)(((int)currentState + 1 ) % 3);
+    // public void NextTurn()
+    // {
+    //     currentState = (PlayerPiece)(((int)currentState + 1 ) % 3);
 
-        Debug.Log("current state: " + currentState);
+    //     Debug.Log("current state: " + currentState);
 
 
-        // NextTurn will cycle the turn, incrementing up or resetting to P1 
-    }
+    //     // NextTurn will cycle the turn, incrementing up or resetting to P1 
+    // }
 
     public void TestFunction()
     {

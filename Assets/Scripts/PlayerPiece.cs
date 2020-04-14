@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum PlayerPiece 
 {
-  X, O, UNSET
+  UNSET, X, O
 }
