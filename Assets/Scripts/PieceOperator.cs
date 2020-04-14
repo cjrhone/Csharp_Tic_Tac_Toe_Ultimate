@@ -16,6 +16,10 @@ public class PieceOperator : MonoBehaviour
 
     PlayerPiece currentState;
     
+    public void Start()
+    {
+        buttonText.text = "";
+    }
 
     public void PlacePiece() 
     {
@@ -24,7 +28,7 @@ public class PieceOperator : MonoBehaviour
         {
             bool isActive = Piece.activeSelf;
             
-            Piece.SetActive(!isActive); // May be unecessary but keep for now 
+            // Piece.SetActive(!isActive); // May be unecessary but keep for now 
 
             Debug.Log("you clicked: " + Piece);
 
