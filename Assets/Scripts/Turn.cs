@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class Turn : MonoBehaviour
 {
-    enum Player {P1, P2};
+    enum PlayerPiece 
+    {
+        UNSET, X, O
+    }
 
+    private PlayerPiece currentState;
 
     // Start is called before the first frame update
     void Start()
     {
-        Player playerTurn;
+     
+    }
 
-        playerTurn = Player.P1; //P1 always goes first
+    public void NextTurn()
+    {
+        currentState = (PlayerPiece)(((int)currentState + 1 ) % 3);
 
+        Debug.Log("current state: " + currentState);
+
+
+        // NextTurn will cycle the turn, incrementing up or resetting to P1 
     }
 
 }

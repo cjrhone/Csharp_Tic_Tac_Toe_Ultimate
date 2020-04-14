@@ -7,16 +7,35 @@ public class GM : MonoBehaviour
     public GameObject Xpiece;
     public GameObject Opiece;
 
+    PlayerPiece XorO;
+
+    public GameObject[] Squares;
+    
+    public PieceOperator piecesomethingorother;
+
     // Start is called before the first frame update
     void Start()
     {
-        print("Hello CJ");
+        // print(Squares[0]);
+        // print(Squares[1]);
+
+        piecesomethingorother.TestFunction(); // just grabs the script, because that's all we're calling 
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void CheckWinConditions()
     {
-        
+        if(Squares[0].activeSelf &&
+           Squares[1].activeSelf &&
+           Squares[2].activeSelf)
+        {
+            Debug.Log("BINGO!");
+        }
     }
+
+    // void Update()
+    // {
+        
+    // }
 
 }
