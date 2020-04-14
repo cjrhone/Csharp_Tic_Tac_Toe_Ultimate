@@ -10,19 +10,16 @@ public class PieceOperator : MonoBehaviour
     public GameObject XPiece;
     public GameObject OPiece;
     public Turn currentTurn;
+    public Button button;
 
     public Text buttonText;
 
     PlayerPiece currentState;
-
-    void Start()
-    {
-        buttonText.text = "";
-    }
     
 
     public void PlacePiece() 
     {
+        
         if (Piece != null)
         {
             bool isActive = Piece.activeSelf;
@@ -34,6 +31,14 @@ public class PieceOperator : MonoBehaviour
             buttonText.text = currentTurn.currentState.ToString(); //Placing the Piece
 
             currentTurn.NextTurn();
+
+             button.interactable = false;
+
+             // Check Win Conditions
+
+             // Increment Counter for Tie game ... Something like if counter > 9 == Show "Tie Game" text
+
+
 
         }
 
