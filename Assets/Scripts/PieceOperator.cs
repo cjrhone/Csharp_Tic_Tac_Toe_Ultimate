@@ -32,7 +32,7 @@ public class PieceOperator : MonoBehaviour
 
             currentTurn.NextTurn();
 
-             button.interactable = false;
+             button.interactable = false; // disables buttons from being clicked
 
              // Check Win Conditions
 
