@@ -4,8 +4,27 @@ using UnityEngine;
 
 public class GM : MonoBehaviour
 {
-    public GameObject Xpiece;
-    public GameObject Opiece;
+    public static GM Instance { get; private set; }
+
+// This Awake() Function creates a singleton of GM 
+// NO TOUCHY! NO!
+    private void Awake() 
+    {
+        if (Instance == null) // if theres nothing stored within Instance
+        {
+            Instance = this; // Analogy: Setting to cookie cutter, rather than cookie 
+            DontDestroyOnLoad(gameObject); // prevents deletion of GM on Awake ( works with else statement )
+        }
+        else 
+        {
+            Destroy(gameObject); // prevents duplicating our Instance of GM
+        }
+    }
+// SINGLETON SCRIPT END
+// Please proceed to play around with code ya goof
+
+
+    public int counter = 0;
 
     PlayerPiece XorO;
 
@@ -14,23 +33,28 @@ public class GM : MonoBehaviour
     public PieceOperator piecesomethingorother;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        // print(Squares[0]);
-        // print(Squares[1]);
+    // void Start()
+    // {
+    //     // print(Squares[0]);
+    //     // print(Squares[1]);
 
-        piecesomethingorother.TestFunction(); // just grabs the script, because that's all we're calling 
+    //     piecesomethingorother.TestFunction(); // Test script - just grabs the script, because that's all we're calling 
 
-    }
+    // }
 
     void CheckWinConditions()
     {
-        if(Squares[0].activeSelf &&
-           Squares[1].activeSelf &&
-           Squares[2].activeSelf)
+        counter += 1;
+
+        Debug.Log("Counter: " + counter);
+        
+        Debug.Log("Checking Win");
+
+        if(counter == 9)
         {
-            Debug.Log("BINGO!");
+            Debug.Log("TIE GAME!!");
         }
+
     }
 
     // void Update()

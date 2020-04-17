@@ -12,6 +12,8 @@ public class PieceOperator : MonoBehaviour
     public Turn currentTurn;
     public Button button;
 
+    public int counter = 0;
+
     public Text buttonText;
 
     PlayerPiece currentState;
@@ -21,7 +23,7 @@ public class PieceOperator : MonoBehaviour
         buttonText.text = "";
     }
 
-    public void PlacePiece() 
+    public void PlacePiece() // OnClick() for each button when its clicked
     {
         
         if (Piece != null)
@@ -30,13 +32,12 @@ public class PieceOperator : MonoBehaviour
             
             // Piece.SetActive(!isActive); // May be unecessary but keep for now 
 
-            Debug.Log("you clicked: " + Piece);
-
             buttonText.text = currentTurn.currentState.ToString(); //Placing the Piece
 
             currentTurn.NextTurn();
 
-             button.interactable = false; // disables buttons from being clicked
+            button.interactable = false; // disables buttons from being clicked
+
 
              // Check Win Conditions
 
@@ -45,9 +46,23 @@ public class PieceOperator : MonoBehaviour
 
 
         }
-
     }
 
+//  public void CheckWinConditions()
+//     {
+//         counter += 1;
+
+//         Debug.Log("Counter: " + counter);
+        
+//         Debug.Log("Checking Win");
+
+//         if(counter == 9)
+//         {
+//             Debug.Log("TIE GAME!!");
+//         }
+
+
+//     }
     // public void NextTurn()
     // {
     //     currentState = (PlayerPiece)(((int)currentState + 1 ) % 3);

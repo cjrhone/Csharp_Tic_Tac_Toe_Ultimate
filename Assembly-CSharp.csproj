@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\PieceOperator.cs" />
      <Compile Include="Assets\Scripts\PlayerPiece.cs" />
      <Compile Include="Assets\Scripts\ResetGame.cs" />
+     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
      <Compile Include="Assets\Scripts\spinthatbitch.cs" />
      <Compile Include="Assets\Scripts\Turn.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">

@@ -169,6 +169,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 59115154}
+  counter: 0
   buttonText: {fileID: 1650856023}
 --- !u!114 &59115154
 MonoBehaviour:
@@ -370,8 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55510b6f40fea43f187c609ddb2dba16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Xpiece: {fileID: 7110376803911929230, guid: 991c4dfb471204e1b9a4f9a79311c9ba, type: 3}
-  Opiece: {fileID: 2175962967642845972, guid: 355a495044c74482e98576a2cf071685, type: 3}
+  counter: 0
   Squares:
   - {fileID: 1784221490}
   - {fileID: 2025285360}
@@ -597,6 +597,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 176321235}
+  counter: 0
   buttonText: {fileID: 2095085182}
 --- !u!114 &176321235
 MonoBehaviour:
@@ -953,7 +954,6 @@ MonoBehaviour:
   - {fileID: 1211885645}
   - {fileID: 1033708516}
   - {fileID: 1483676968}
-  buttonText: []
   newText: {fileID: 0}
 --- !u!1 &374700564
 GameObject:
@@ -1092,6 +1092,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
+  counter: 0
   buttonText: {fileID: 0}
 --- !u!1001 &407055607
 PrefabInstance:
@@ -1566,6 +1567,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564888901}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &605075519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605075521}
+  - component: {fileID: 605075520}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &605075520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605075519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7287a573b97946f99a174526873c8a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ValueText: {fileID: 0}
+--- !u!4 &605075521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605075519}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7335963, y: -1.0474895, z: 5.1761537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &696111136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1771,6 +1816,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
+  counter: 0
   buttonText: {fileID: 0}
 --- !u!1 &833073603
 GameObject:
@@ -1965,6 +2011,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1033708516}
+  counter: 0
   buttonText: {fileID: 1044783210}
 --- !u!114 &1033708516
 MonoBehaviour:
@@ -2194,6 +2241,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1092904804}
+  counter: 0
   buttonText: {fileID: 139438081}
 --- !u!114 &1092904804
 MonoBehaviour:
@@ -2347,6 +2395,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
+  counter: 0
   buttonText: {fileID: 0}
 --- !u!1 &1186425422
 GameObject:
@@ -2405,6 +2454,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1186425425}
+  counter: 0
   buttonText: {fileID: 760402619}
 --- !u!114 &1186425425
 MonoBehaviour:
@@ -2553,6 +2603,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1211885645}
+  counter: 0
   buttonText: {fileID: 1569545163}
 --- !u!114 &1211885645
 MonoBehaviour:
@@ -2835,6 +2886,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
+  counter: 0
   buttonText: {fileID: 0}
 --- !u!1 &1439152103
 GameObject:
@@ -2997,6 +3049,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1467967362}
+  counter: 0
   buttonText: {fileID: 1780318050}
 --- !u!114 &1467967362
 MonoBehaviour:
@@ -3146,6 +3199,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1483676968}
+  counter: 0
   buttonText: {fileID: 473022412}
 --- !u!114 &1483676968
 MonoBehaviour:
@@ -4155,6 +4209,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 2008048275}
+  counter: 0
   buttonText: {fileID: 374700566}
 --- !u!114 &2008048275
 MonoBehaviour:
@@ -4415,6 +4470,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
+  counter: 0
   buttonText: {fileID: 0}
 --- !u!1 &2095085180
 GameObject:

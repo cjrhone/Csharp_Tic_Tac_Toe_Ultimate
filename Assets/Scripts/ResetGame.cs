@@ -11,33 +11,22 @@ public class ResetGame : MonoBehaviour
 
     public PieceOperator placedPieces;
     public Button[] buttons;
-    public Text[] buttonText;
     public Text newText;
 
-
-    void Start()
-    {
-        Button[] buttons = GetComponentInChildren<Button[]>();
-        Text[] buttonText = GetComponents<Text>();
-    }
 
     public void Reset()
     {
         foreach (Button button in buttons)
         {
-            button.interactable = true;
-            newText = button.GetComponentInChildren<Text>();
-            newText.text = "";
+            button.interactable = true; // enables each button
+            newText = button.GetComponentInChildren<Text>(); //grabs text in each button
+            newText.text = ""; // resets to blank value
 
-            Debug.Log(button);
+            // Debug.Log(button);
             // newText = button.GetComponent<Text>();
             // newText.text = "";
         }
 
-        // foreach (Text text in buttonText)
-        // {
-        //     text = "";
-        // }
         // placedPieces.button.interactable = true;
     }
 
