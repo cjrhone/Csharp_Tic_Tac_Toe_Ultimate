@@ -170,6 +170,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 59115154}
   counter: 0
+  spaceNumber: 4
   buttonText: {fileID: 1650856023}
 --- !u!114 &59115154
 MonoBehaviour:
@@ -372,16 +373,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counter: 0
-  Squares:
-  - {fileID: 1784221490}
-  - {fileID: 2025285360}
-  - {fileID: 833073603}
-  - {fileID: 1145648071}
-  - {fileID: 2093037335}
-  - {fileID: 352188723}
-  - {fileID: 803230598}
-  - {fileID: 403371063}
-  - {fileID: 1438379759}
+  gridSpaces:
+  - {fileID: 1092904804}
+  - {fileID: 1186425425}
+  - {fileID: 1467967362}
+  - {fileID: 2008048275}
+  - {fileID: 59115154}
+  - {fileID: 176321235}
+  - {fileID: 1211885645}
+  - {fileID: 1033708516}
+  - {fileID: 1483676968}
+  xArray: 
+  oArray: 
+  spaceText: {fileID: 0}
+  winText: {fileID: 1985995295}
   piecesomethingorother: {fileID: 1186425424}
 --- !u!4 &163891707
 Transform:
@@ -598,6 +603,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 176321235}
   counter: 0
+  spaceNumber: 5
   buttonText: {fileID: 2095085182}
 --- !u!114 &176321235
 MonoBehaviour:
@@ -955,6 +961,8 @@ MonoBehaviour:
   - {fileID: 1033708516}
   - {fileID: 1483676968}
   newText: {fileID: 0}
+  currentTurn: {fileID: 1286689045}
+  winText: {fileID: 1985995295}
 --- !u!1 &374700564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,6 +1101,7 @@ MonoBehaviour:
   currentTurn: {fileID: 0}
   button: {fileID: 0}
   counter: 0
+  spaceNumber: 0
   buttonText: {fileID: 0}
 --- !u!1001 &407055607
 PrefabInstance:
@@ -1576,27 +1585,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 605075521}
-  - component: {fileID: 605075520}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &605075520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605075519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7287a573b97946f99a174526873c8a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ValueText: {fileID: 0}
+  m_IsActive: 0
 --- !u!4 &605075521
 Transform:
   m_ObjectHideFlags: 0
@@ -1817,6 +1812,7 @@ MonoBehaviour:
   currentTurn: {fileID: 0}
   button: {fileID: 0}
   counter: 0
+  spaceNumber: 0
   buttonText: {fileID: 0}
 --- !u!1 &833073603
 GameObject:
@@ -2012,6 +2008,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1033708516}
   counter: 0
+  spaceNumber: 1
   buttonText: {fileID: 1044783210}
 --- !u!114 &1033708516
 MonoBehaviour:
@@ -2242,6 +2239,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1092904804}
   counter: 0
+  spaceNumber: 6
   buttonText: {fileID: 139438081}
 --- !u!114 &1092904804
 MonoBehaviour:
@@ -2396,6 +2394,7 @@ MonoBehaviour:
   currentTurn: {fileID: 0}
   button: {fileID: 0}
   counter: 0
+  spaceNumber: 0
   buttonText: {fileID: 0}
 --- !u!1 &1186425422
 GameObject:
@@ -2455,6 +2454,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1186425425}
   counter: 0
+  spaceNumber: 7
   buttonText: {fileID: 760402619}
 --- !u!114 &1186425425
 MonoBehaviour:
@@ -2604,6 +2604,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1211885645}
   counter: 0
+  spaceNumber: 0
   buttonText: {fileID: 1569545163}
 --- !u!114 &1211885645
 MonoBehaviour:
@@ -2887,6 +2888,7 @@ MonoBehaviour:
   currentTurn: {fileID: 0}
   button: {fileID: 0}
   counter: 0
+  spaceNumber: 0
   buttonText: {fileID: 0}
 --- !u!1 &1439152103
 GameObject:
@@ -3050,6 +3052,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1467967362}
   counter: 0
+  spaceNumber: 8
   buttonText: {fileID: 1780318050}
 --- !u!114 &1467967362
 MonoBehaviour:
@@ -3200,6 +3203,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1483676968}
   counter: 0
+  spaceNumber: 2
   buttonText: {fileID: 473022412}
 --- !u!114 &1483676968
 MonoBehaviour:
@@ -4070,6 +4074,7 @@ RectTransform:
   m_Children:
   - {fileID: 2042810666}
   - {fileID: 361737097}
+  - {fileID: 1985995293}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4078,6 +4083,85 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1985995292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1985995293}
+  - component: {fileID: 1985995294}
+  - component: {fileID: 1985995295}
+  m_Layer: 5
+  m_Name: WinText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1985995293
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985995292}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1952246128}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -25.73, y: -18.56}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!222 &1985995294
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985995292}
+  m_CullTransparentMesh: 0
+--- !u!114 &1985995295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985995292}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.10852015, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 104
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 104
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: WIN!
 --- !u!1001 &1989607621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4210,6 +4294,7 @@ MonoBehaviour:
   currentTurn: {fileID: 1286689045}
   button: {fileID: 2008048275}
   counter: 0
+  spaceNumber: 3
   buttonText: {fileID: 374700566}
 --- !u!114 &2008048275
 MonoBehaviour:
@@ -4471,6 +4556,7 @@ MonoBehaviour:
   currentTurn: {fileID: 0}
   button: {fileID: 0}
   counter: 0
+  spaceNumber: 0
   buttonText: {fileID: 0}
 --- !u!1 &2095085180
 GameObject:

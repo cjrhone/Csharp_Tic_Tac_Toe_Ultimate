@@ -13,6 +13,7 @@ public class PieceOperator : MonoBehaviour
     public Button button;
 
     public int counter = 0;
+    public int spaceNumber;
 
     public Text buttonText;
 
@@ -37,6 +38,23 @@ public class PieceOperator : MonoBehaviour
             currentTurn.NextTurn();
 
             button.interactable = false; // disables buttons from being clicked
+
+            if(currentTurn.currentState == 0) // O Turn.. I Don't understand how this code works 
+            {
+                print("X's Turn");
+                print("currentTurn.currentState: " + currentTurn.currentState);
+                GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
+
+            }
+
+            else // X Turn
+            {
+                print("O's Turn");
+                print("currentTurn.currentState: " + currentTurn.currentState);
+                GM.Instance.xArray.Add(spaceNumber); // Add indicated spaceNumber to XArray
+            };
+
+            GM.Instance.CheckWinConditions();  //Calls GM to check win
 
 
              // Check Win Conditions

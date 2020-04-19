@@ -12,20 +12,26 @@ public class ResetGame : MonoBehaviour
     public PieceOperator placedPieces;
     public Button[] buttons;
     public Text newText;
-
+    public Turn currentTurn;
+    public Text winText;
 
     public void Reset()
     {
         foreach (Button button in buttons)
         {
             button.interactable = true; // enables each button
-            newText = button.GetComponentInChildren<Text>(); //grabs text in each button
+            newText = button.GetComponentInChildren<Text>(); //grabs text child in each button
             newText.text = ""; // resets to blank value
 
-            // Debug.Log(button);
-            // newText = button.GetComponent<Text>();
-            // newText.text = "";
         }
+
+        // Reset Array Pieces
+        winText.enabled = false;
+        GM.Instance.xArray = new List<int>();
+        GM.Instance.oArray = new List<int>();
+
+        currentTurn.currentState = 0;
+
 
         // placedPieces.button.interactable = true;
     }
