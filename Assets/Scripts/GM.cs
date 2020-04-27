@@ -27,6 +27,10 @@ public class GM : MonoBehaviour
 
     public int counter = 0;
 
+    public int xWins = 0;
+
+    public int oWins = 0;
+
     PlayerPiece XorO;
 
     public Button[] gridSpaces;
@@ -35,6 +39,8 @@ public class GM : MonoBehaviour
 
     public List<int> xArray = new List<int>();
     public List<int> oArray = new List<int>();
+
+    public AudioClip audiodata;
 
     public Text spaceText;
     public Text winText;
@@ -55,14 +61,60 @@ public class GM : MonoBehaviour
         WinningNumbers[6] = new int[] {0,4,8};
         WinningNumbers[7] = new int[] {2,4,6};
 
+        audiodata = GetComponent<AudioClip>();
+
         // {0,1,2}, {3,4,5}, {6,7,8},   // horizontal wins
         // {0,3,6}, {1,4,7}, {2,5,8},   // vertical wins
         // {0,4,8}, {2,4,6}             // diagonal wins
 
     }
 
-    public void GameWin()
+    public void GameWin(int[] winningSpots)
     {
+
+        // WIN TYPE CASES
+        
+        /////////////////
+        /////////////////
+        if(winningSpots == WinningNumbers[0])
+        {
+            Debug.Log("{0,1,2}");
+        }
+
+        else if(winningSpots == WinningNumbers[1])
+        {
+            Debug.Log("{3,4,5}");
+        }
+        else if(winningSpots == WinningNumbers[2])
+        {
+            Debug.Log("{6,7,8}");
+        }
+        else if(winningSpots == WinningNumbers[3])
+        {
+            Debug.Log("{0,3,6}");
+        }
+        else if(winningSpots == WinningNumbers[4])
+        {
+            Debug.Log("{1,4,7}");
+        }
+        else if(winningSpots == WinningNumbers[5])
+        {
+            Debug.Log("{2,5,8}");
+        }
+        else if(winningSpots == WinningNumbers[6])
+        {
+            Debug.Log("{0,4,8}");
+        }
+
+          else if(winningSpots == WinningNumbers[7])
+        {
+            Debug.Log("{2,4,6}");
+        }
+        /////////////////
+        /////////////////
+
+        //END CASES
+
         foreach(Button space in gridSpaces)
         {
             //Indicate who won 
@@ -70,41 +122,42 @@ public class GM : MonoBehaviour
             counter = 0;
         }
 
-          winText.GetComponent<Text>().enabled = true;
+          winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
     }
 
     public void CheckWinConditions()
     {
         counter += 1;
 
+        // We want to
+        // 1 - Indicate TYPE of win ( WinningNumbers[0-7] )
+        // 2 - Indicate WHO won ONCE
+        // 3 - Incriment and display win count for X or O player
+
         foreach(Button space in gridSpaces)
             {
-                // spaceText = space.GetComponentInChildren<Text>();
 
                 foreach(int[] win in WinningNumbers)
                 {
-
-                    foreach(int number in win)
-                    {
                         if(xArray.Contains(win[0]) && xArray.Contains(win[1]) && xArray.Contains(win[2]))
                         {
                             print("X Player -- Well Done.");
-                            GameWin();
+                            xWins++;
+                            GameWin(win);
+                            return;
                         }
 
                         if(oArray.Contains(win[0]) && oArray.Contains(win[1]) && oArray.Contains(win[2]))
                         {
                             print("O Player -- Well Done.");
-                            GameWin();
+                            oWins++;
+                            GameWin(win);
+                            return;
                         }
-                     
-                    }
                
                 }
 
     }
-
-
 
         if(counter == 9) // && Condition of no winner 
         {

@@ -14,6 +14,7 @@ public class ResetGame : MonoBehaviour
     public Text newText;
     public Turn currentTurn;
     public Text winText;
+    public GameObject[] ResetPieces;
 
     public void Reset()
     {
@@ -23,7 +24,27 @@ public class ResetGame : MonoBehaviour
             newText = button.GetComponentInChildren<Text>(); //grabs text child in each button
             newText.text = ""; // resets to blank value
 
+            GameObject xpiece = GameObject.Find("xpiece");
+            GameObject opiece = GameObject.Find("opiece");
+
+            if(xpiece)
+            {
+                xpiece.SetActive(false);
+
+            }
+
+            if(opiece)
+            {
+            opiece.SetActive(false);
+            }
+
+            
+
+        GM.Instance.counter = 0; //resets counter to 0 if reset button called
+
         }
+
+       
 
         // Reset Array Pieces
         winText.enabled = false;
