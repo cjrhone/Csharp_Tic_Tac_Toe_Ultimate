@@ -27,9 +27,9 @@ public class GM : MonoBehaviour
 
     public int counter = 0;
 
-    public int xWins = 0;
+    public int xWins;
 
-    public int oWins = 0;
+    public int oWins;
 
     PlayerPiece XorO;
 
@@ -40,15 +40,41 @@ public class GM : MonoBehaviour
     public List<int> xArray = new List<int>();
     public List<int> oArray = new List<int>();
 
-    public AudioClip audiodata;
-
     public Text spaceText;
     public Text winText;
-    
-    public PieceOperator piecesomethingorother;
+
+    public Text xScore;
+    public Text oScore;
+    public bool playerWin = false;
+
+
+    public ResetGame resetGame;
+    public PieceOperator pieceOperator;
+
+    public HealthBar xHealthBar;
+    public HealthBar oHealthBar;
+
+    public int maxHealth = 100;
+    public int oCurrentHealth;
+    public int xCurrentHealth;
+
+
+
 
     void Start()
     {
+        oCurrentHealth = maxHealth;
+        xCurrentHealth = maxHealth;
+
+        xHealthBar.SetMaxHealth(maxHealth);
+        oHealthBar.SetMaxHealth(maxHealth);
+
+
+        print("O Current Health: " + oCurrentHealth);
+        print("X Current Health: " + xCurrentHealth);
+
+        print("Max Health: " + maxHealth);
+
 
         WinningNumbers[0] = new int[] {0,1,2};
         WinningNumbers[1] = new int[] {3,4,5};
@@ -61,16 +87,51 @@ public class GM : MonoBehaviour
         WinningNumbers[6] = new int[] {0,4,8};
         WinningNumbers[7] = new int[] {2,4,6};
 
-        audiodata = GetComponent<AudioClip>();
-
         // {0,1,2}, {3,4,5}, {6,7,8},   // horizontal wins
         // {0,3,6}, {1,4,7}, {2,5,8},   // vertical wins
         // {0,4,8}, {2,4,6}             // diagonal wins
+
+        xScore.text = "X Wins: " + xWins; 
+        oScore.text = "O Wins: " + oWins;  
+
+    }
+
+     public void TakeDamage( int damage, int playerHealth, HealthBar healthbar ) // Will include TIME BONUS feature for extra damage in the near future
+    {
+        print("damage: " + damage);
+        print("playerHealth: " + playerHealth);
+        print("healthbar: " + healthbar);
+
+        playerHealth -= damage;
+        
+        if(healthbar == xHealthBar)
+        {
+            xCurrentHealth = playerHealth;
+            xHealthBar.SetHealth(xCurrentHealth);
+
+            print("X CONDITION");
+        }
+
+        else if( healthbar == oHealthBar )
+        {
+            oCurrentHealth = playerHealth;
+            oHealthBar.SetHealth(oCurrentHealth);
+            print("O CONDITION");
+        }
+
+        // healthbar.SetHealth(playerHealth);
+        print("After SetHealth playerhealth now is: " + playerHealth);
+        print("xHealth: " + xCurrentHealth);
+        print("oHealth: " + oCurrentHealth);
+
+       
 
     }
 
     public void GameWin(int[] winningSpots)
     {
+        FindObjectOfType<AudioManager>().Play("Damage");
+
 
         // WIN TYPE CASES
         
@@ -143,7 +204,11 @@ public class GM : MonoBehaviour
                         {
                             print("X Player -- Well Done.");
                             xWins++;
+                            xScore.text = "X Wins: " + xWins; 
+                            playerWin = true;
                             GameWin(win);
+
+                            TakeDamage(25, oCurrentHealth, oHealthBar);
                             return;
                         }
 
@@ -151,7 +216,11 @@ public class GM : MonoBehaviour
                         {
                             print("O Player -- Well Done.");
                             oWins++;
+                            oScore.text = "O Wins: " + oWins; 
+                            playerWin = true;
                             GameWin(win);
+
+                            TakeDamage(25, xCurrentHealth, xHealthBar);
                             return;
                         }
                
@@ -159,9 +228,10 @@ public class GM : MonoBehaviour
 
     }
 
-        if(counter == 9) // && Condition of no winner 
+        if(counter == 9 && playerWin == false) // TIE GAME will FLASH each gameobject then RESET the game 
         {
             Debug.Log("TIE GAME!!");
+            resetGame.Reset();
 
         }
 

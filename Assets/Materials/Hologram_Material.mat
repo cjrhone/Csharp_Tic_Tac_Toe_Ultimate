@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hologram_Material
-  m_Shader: {fileID: 4800000, guid: b887767e3c5b748f09ea3293128e8e96, type: 3}
+  m_Shader: {fileID: 4800000, guid: 30da15549d68c4a66a33e377287581e2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -21,6 +21,10 @@ Material:
     m_TexEnvs:
     - Texture2D_AB5A2BB6:
         m_Texture: {fileID: 2800000, guid: 4a1253b99863f4cb197927bcb6f6712b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_B260C87B:
+        m_Texture: {fileID: 2800000, guid: 662834ad283feb9418f860e1a49cc42f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -68,6 +72,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_1B1700CB: {r: 1.827451, g: 0.972549, b: 0, a: 0}
     - Color_6B340A0A: {r: 2, g: 1.7172775, b: 1.5, a: 0}
     - Color_AD123ECF: {r: 0.727056, g: 1, b: 0.4481132, a: 0}
     - Vector2_ACB8B90E: {r: 11.64, g: 3, b: 0, a: 0}

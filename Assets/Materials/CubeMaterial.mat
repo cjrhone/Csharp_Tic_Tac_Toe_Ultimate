@@ -75,6 +75,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - Color_FC204D86: {r: 0, g: 0.8292657, b: 5.716067, a: 0}
+    - Color_FC204D86: {r: 0.34182364, g: 4.607637, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

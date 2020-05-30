@@ -18,6 +18,8 @@ public class ResetGame : MonoBehaviour
 
     public void Reset()
     {
+        FindObjectOfType<AudioManager>().Play("Reset");
+
         foreach (Button button in buttons)
         {
             button.interactable = true; // enables each button
@@ -30,17 +32,17 @@ public class ResetGame : MonoBehaviour
             if(xpiece)
             {
                 xpiece.SetActive(false);
-
             }
 
             if(opiece)
             {
-            opiece.SetActive(false);
+                opiece.SetActive(false);
             }
 
             
 
         GM.Instance.counter = 0; //resets counter to 0 if reset button called
+        GM.Instance.playerWin = false; // resets playerWin trigger -- used to indicate tie or win
 
         }
 

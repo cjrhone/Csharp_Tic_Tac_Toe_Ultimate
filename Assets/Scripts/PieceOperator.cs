@@ -16,17 +16,27 @@ public class PieceOperator : MonoBehaviour
     public Text buttonText;
 
     PlayerPiece currentState;
+
+    // public HealthBar healthBar;
+    // public int maxHealth = 100;
+    // public int currentHealth;
     
     public void Start()
     {
-        buttonText.text = "";
-        
+        buttonText.text = ""; // BUTTON TEXT STARTS EMPTY ""
+        // healthBar.SetMaxHealth(maxHealth);
     }
+
+    // public void TakeDamage( int damage )
+    // {
+    //     currentHealth -= damage;
+    //     healthBar.SetHealth(currentHealth);
+    // }
 
     public void PlacePiece() // OnClick() for each button when its clicked
     {
 
-            buttonText.text = currentTurn.currentState.ToString(); //Placing the Piece
+            // buttonText.text = currentTurn.currentState.ToString(); // REPLACES blank "" text with X/O 
 
             currentTurn.NextTurn();
 
@@ -38,6 +48,10 @@ public class PieceOperator : MonoBehaviour
                 print("currentTurn.currentState: " + currentTurn.currentState);
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
+
+                FindObjectOfType<AudioManager>().Play("XPlay");
+
+                GM.Instance.CheckWinConditions();
 
                 
 
@@ -52,11 +66,16 @@ public class PieceOperator : MonoBehaviour
                 GM.Instance.xArray.Add(spaceNumber); // Add indicated spaceNumber to XArray
                 XPiece.SetActive(true);
 
+                FindObjectOfType<AudioManager>().Play("OPlay");
+
+                GM.Instance.CheckWinConditions();
+
+
                 
 
             };
 
-            GM.Instance.CheckWinConditions();  //Calls GM to check win
+            // GM.Instance.CheckWinConditions();  //Calls GM to check win
 
 
     }
