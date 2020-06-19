@@ -16,8 +16,15 @@ public class ResetGame : MonoBehaviour
     public Text winText;
     public GameObject[] ResetPieces;
 
+    public GameObject resetButton;
+
     public void Reset()
     {
+        if(resetButton.activeSelf == true) // IF RESET BUTTON VISIBLE -- HIDE IT!
+        {
+            resetButton.SetActive(false);
+        }
+
         FindObjectOfType<AudioManager>().Play("Reset");
 
         foreach (Button button in buttons)
@@ -57,6 +64,17 @@ public class ResetGame : MonoBehaviour
 
 
         // placedPieces.button.interactable = true;
+    }
+
+    public void ReplayButton()
+    {
+        Reset();
+        GM.Instance.xCurrentHealth = GM.Instance.maxHealth; // Reset health to default max health ( value )
+        GM.Instance.xHealthBar.SetMaxHealth(GM.Instance.maxHealth); // Reset healthbar to default ( on-screen visual )
+
+        GM.Instance.oCurrentHealth = GM.Instance.maxHealth;
+        GM.Instance.oHealthBar.SetMaxHealth(GM.Instance.maxHealth);
+
     }
 
     

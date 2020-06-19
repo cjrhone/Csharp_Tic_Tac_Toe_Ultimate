@@ -4,15 +4,16 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: DecalCollision 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DecalCore
   m_Shader: {fileID: 4800000, guid: d8f400148b999fe41bd30759b3a9126b, type: 3}
-  m_ShaderKeywords: USE_FRAME_BLENDING USE_SCRIPT_FRAMEBLENDING _BLENDMODE_ADD
+  m_ShaderKeywords: USE_ALPHA_POW USE_CUTOUT USE_CUTOUT_TEX USE_NOISE_DISTORTION _BLENDMODE_BLEND
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2998
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -27,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CutoutTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 667f98634cfacf141adc94f97b716342, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -44,27 +45,31 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DistortTex:
         m_Texture: {fileID: 2800000, guid: 1931425b86a63f445b9a37c1830a5699, type: 3}
-        m_Scale: {x: 8, y: 8}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FalloffTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e8ccd4c08dced06498e10974194597ac, type: 3}
-        m_Scale: {x: 0.125, y: 0.125}
+        m_Texture: {fileID: 2800000, guid: 784f7c5a2fef0074b80c4bf95d67b13d, type: 3}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _Mask:
-        m_Texture: {fileID: 2800000, guid: e8ccd4c08dced06498e10974194597ac, type: 3}
-        m_Scale: {x: 0.125, y: 0.125}
-        m_Offset: {x: 0, y: 0.5}
+        m_Texture: {fileID: 2800000, guid: a28279d222821e4469b553cdfd204953, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTex:
         m_Texture: {fileID: 2800000, guid: 994e51c46f307ae4d9386e5c8022a40b, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -75,42 +80,44 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AlphaPow: 1
-    - _BlendMode: 0
+    - _AlphaPow: 2
+    - _BlendMode: 1
     - _BumpScale: 1
+    - _ColorStrength: 1
     - _Cutoff: 0
-    - _Cutout: 1.1
-    - _CutoutAlphaMul: 1
+    - _Cutout: 0.5
+    - _CutoutAlphaMul: 15
     - _CutoutThreshold: 0.015
     - _DetailNormalMapScale: 1
-    - _DistortScale: 0.1
+    - _DistortScale: 0.3
     - _DistortSpeed: 1
     - _DstBlend: 0
-    - _DstMode: 1
+    - _DstMode: 10
     - _Glossiness: 0.5
-    - _MaskPow: 2
+    - _MaskPow: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Scale: 5
-    - _Speed: 5
+    - _Scale: 6
+    - _Speed: 1.5
     - _SrcBlend: 1
     - _SrcMode: 5
     - _UVSec: 0
-    - _UseAlphaPow: 0
+    - _UseAlphaPow: 1
     - _UseCustomLighting: 0
-    - _UseCutout: 0
-    - _UseCutoutTex: 0
+    - _UseCutout: 1
+    - _UseCutoutTex: 1
     - _UseCutoutThreshold: 0
-    - _UseFrameBlending: 1
-    - _UseNoiseDistortion: 0
+    - _UseFrameBlending: 0
+    - _UseNoiseDistortion: 1
+    - _UseVertexStreamRandom: 0
     - _UseWorldSpaceUV: 0
     - _ZTest1: 5
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CutoutColor: {r: 1, g: 1, b: 1, a: 1}
-    - _DistortionSpeedScale: {r: 0.5, g: 0, b: 0.01, a: 0.005}
+    - _DistortionSpeedScale: {r: 0.5, g: 0, b: 0.1, a: 0.5}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TintColor: {r: 1.8, g: 0.5323331, b: 0.15882356, a: 1}
+    - _TintColor: {r: 5.424, g: 2.5084624, b: 1.1964704, a: 1}

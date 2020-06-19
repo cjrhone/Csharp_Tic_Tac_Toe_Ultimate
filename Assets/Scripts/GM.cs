@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GM : MonoBehaviour
 {
 ////////////////
-// This Awake() Function creates a singleton of GM 
+// This Awake() Function creates a SINGLETON of GM 
 // NO TOUCHY! NO!
     public static GM Instance { get; private set; }
     private void Awake() 
@@ -48,21 +48,27 @@ public class GM : MonoBehaviour
     public bool playerWin = false;
 
 
-    public ResetGame resetGame;
+    public ResetGame resetGame; // SCRIPT FOR ResetGame
+    public GameObject resetButton; // GAMEOBJECT for resetButton to make appear, reappear -- refactor to retry button later 
+
     public PieceOperator pieceOperator;
 
-    public HealthBar xHealthBar;
-    public HealthBar oHealthBar;
+    public HealthBar xHealthBar; // X HEALTH BAR REFERENCE
+    public HealthBar oHealthBar; // O HEALTH BAR REFERENCE 
 
-    public int maxHealth = 100;
-    public int oCurrentHealth;
-    public int xCurrentHealth;
+    public int maxHealth = 25; // DEFAULT MAX HEALTH
+    public int oCurrentHealth; // CURRENT HEALTH for Player O
+    public int xCurrentHealth; // CURRENT HEALTH for Player X
+
 
 
 
 
     void Start()
     {
+        // A GOOD PLACE FOR A COROUTINE
+
+        print("STARTING: maxHealth: " + maxHealth);
         oCurrentHealth = maxHealth;
         xCurrentHealth = maxHealth;
 
@@ -104,7 +110,7 @@ public class GM : MonoBehaviour
 
         playerHealth -= damage;
         
-        if(healthbar == xHealthBar)
+        if( healthbar == xHealthBar ) // CHECK REFERENCE FOR WHICH HEALTHBAR
         {
             xCurrentHealth = playerHealth;
             xHealthBar.SetHealth(xCurrentHealth);
@@ -112,7 +118,7 @@ public class GM : MonoBehaviour
             print("X CONDITION");
         }
 
-        else if( healthbar == oHealthBar )
+        else if( healthbar == oHealthBar ) // CHECKS REFERENCE FOR WHICH HEALTHBAR
         {
             oCurrentHealth = playerHealth;
             oHealthBar.SetHealth(oCurrentHealth);
@@ -120,11 +126,35 @@ public class GM : MonoBehaviour
         }
 
         // healthbar.SetHealth(playerHealth);
-        print("After SetHealth playerhealth now is: " + playerHealth);
-        print("xHealth: " + xCurrentHealth);
-        print("oHealth: " + oCurrentHealth);
+        // print("After SetHealth playerhealth now is: " + playerHealth);
+        // print("xHealth: " + xCurrentHealth);
+        // print("oHealth: " + oCurrentHealth);
 
        
+
+    }
+
+    IEnumerator winTextCoroutine()
+    {
+        // Debug.Log("winText COROUNTINE ACTIVE");
+
+         if( oCurrentHealth <= 0 || xCurrentHealth <= 0) // PLAYER < 0 HEALTH
+        {
+            Debug.Log("ENDING COROUTINE...");
+            winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
+            resetButton.SetActive(true);
+            StopCoroutine(winTextCoroutine()); // STOP Coroutine 
+            yield return null;
+        }
+
+        else if (playerWin == true)
+        {
+            Debug.Log("INITIATING WAITFORSECONDS...");
+            yield return new WaitForSeconds(1);
+            resetGame.Reset();
+        }
+        Debug.Log("PlayerWin: " + playerWin);
+        yield return null;
 
     }
 
@@ -176,14 +206,17 @@ public class GM : MonoBehaviour
 
         //END CASES
 
+
+
         foreach(Button space in gridSpaces)
         {
-            //Indicate who won 
             space.interactable = false;
             counter = 0;
         }
 
-          winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
+        //   winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
+
+
     }
 
     public void CheckWinConditions()
@@ -208,7 +241,18 @@ public class GM : MonoBehaviour
                             playerWin = true;
                             GameWin(win);
 
-                            TakeDamage(25, oCurrentHealth, oHealthBar);
+                            TakeDamage(7, oCurrentHealth, oHealthBar);
+
+                            // if( oCurrentHealth <= 0) // PLAYER < 0 HEALTH
+                            // {
+                            //     StopCoroutine(winTextCoroutine());
+                            //     Debug.Log("X GAME WIN!");
+                            //     winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
+                            //     resetButton.SetActive(true);
+
+                            // }
+
+                            StartCoroutine(winTextCoroutine());
                             return;
                         }
 
@@ -219,8 +263,21 @@ public class GM : MonoBehaviour
                             oScore.text = "O Wins: " + oWins; 
                             playerWin = true;
                             GameWin(win);
+                            TakeDamage(7, xCurrentHealth, xHealthBar);
 
-                            TakeDamage(25, xCurrentHealth, xHealthBar);
+                            //  if( xCurrentHealth <= 0) // PLAYER < 0 HEALTH
+                            // {
+                            //     StopCoroutine(winTextCoroutine());
+                            //     Debug.Log("O GAME WIN!");
+                            //     winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
+                            //     resetButton.SetActive(true);
+
+                            // }
+
+                            StartCoroutine(winTextCoroutine());
+
+
+                            
                             return;
                         }
                
