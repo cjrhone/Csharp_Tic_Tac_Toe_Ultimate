@@ -6,20 +6,29 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
 
-   public Slider slider;
+   [SerializeField]
+   private Slider slider;
 
-   public void SetMaxHealth(int health)
-   {
-       slider.maxValue = health;
-       slider.value = health; 
-       print("HealthBar.cs set Max Health to: " + health);
+   public int playerHealth {get; private set;}
+   private int maxHealth;
+
+   public void Initialize(int maximum){
+       maxHealth = maximum;
+       playerHealth = maxHealth;
+       slider.maxValue = maxHealth;
+       slider.value = playerHealth; 
+       print("HealthBar.cs Initialized, max health: " + maxHealth);
    }
 
-   public void SetHealth (int health)
-   {
-       slider.value = health; 
-       print("HealthBar.cs SetHealth to: " + health);
-   }
-
+    // Returns the resulting remaining health of the player
+    public int TakeDamage(int damage) // Will include TIME BONUS feature for extra damage in the near future
+    {
+        print("damage: " + damage);
+        print("playerHealth: " + playerHealth);
+        print("healthbar: " + this);
+        playerHealth -= damage;
+        slider.value = playerHealth; 
+        return playerHealth;
+    }
 
 }

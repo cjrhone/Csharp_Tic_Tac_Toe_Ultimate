@@ -25,112 +25,66 @@ public class GM : MonoBehaviour
 // Please proceed to play around with code ya goof
 ////////////////
 
-    public int counter = 0;
+    public Turn turnManager;
+    public PlayerPiece firstPlayer;
 
     public int xWins;
-
     public int oWins;
-
-    PlayerPiece XorO;
-
     public Button[] gridSpaces;
 
-    private int[][] WinningNumbers = new int[8][];
+    // There are 8 possible ways to win Tic Tac Toe
+    // The following are preset winning numbers, contained within an array called "WinningNumbers"
+    // {0,1,2}, {3,4,5}, {6,7,8},   // horizontal wins
+    // {0,3,6}, {1,4,7}, {2,5,8},   // vertical wins
+    // {0,4,8}, {2,4,6}             // diagonal wins
+    private int[][] WinningNumbers = {
+        new int[] {0,1,2}, //[0]
+        new int[] {3,4,5}, //[1]
+        new int[] {6,7,8}, //[2]
+        new int[] {0,3,6}, //[3]
+        new int[] {1,4,7}, //[4]
+        new int[] {2,5,8}, //[5]
+        new int[] {0,4,8}, //[6]
+        new int[] {2,4,6}, //[7]
+    };
 
     public List<int> xArray = new List<int>();
     public List<int> oArray = new List<int>();
 
-    public Text spaceText;
+    //public Text spaceText;
     public Text winText;
 
     public Text xScore;
     public Text oScore;
     public bool playerWin = false;
 
+    public Countdown resetTimer;
+    public Text timerText;
 
     public ResetGame resetGame; // SCRIPT FOR ResetGame
-    public GameObject resetButton; // GAMEOBJECT for resetButton to make appear, reappear -- refactor to retry button later 
-
-    public PieceOperator pieceOperator;
 
     public HealthBar xHealthBar; // X HEALTH BAR REFERENCE
     public HealthBar oHealthBar; // O HEALTH BAR REFERENCE 
 
-    public int maxHealth = 25; // DEFAULT MAX HEALTH
-    public int oCurrentHealth; // CURRENT HEALTH for Player O
-    public int xCurrentHealth; // CURRENT HEALTH for Player X
+    public static int maxHealth = 25; // DEFAULT MAX HEALTH
 
-
-
-
+    public AudioManager audioManager;
 
     void Start()
     {
         // A GOOD PLACE FOR A COROUTINE
 
         print("STARTING: maxHealth: " + maxHealth);
-        oCurrentHealth = maxHealth;
-        xCurrentHealth = maxHealth;
 
-        xHealthBar.SetMaxHealth(maxHealth);
-        oHealthBar.SetMaxHealth(maxHealth);
+        xHealthBar.Initialize(maxHealth);
+        oHealthBar.Initialize(maxHealth);
 
-
-        print("O Current Health: " + oCurrentHealth);
-        print("X Current Health: " + xCurrentHealth);
-
+        print("O Current Health: " + oHealthBar.playerHealth);
+        print("X Current Health: " + xHealthBar.playerHealth);
         print("Max Health: " + maxHealth);
-
-
-        WinningNumbers[0] = new int[] {0,1,2};
-        WinningNumbers[1] = new int[] {3,4,5};
-        WinningNumbers[2] = new int[] {6,7,8};
-
-        WinningNumbers[3] = new int[] {0,3,6};
-        WinningNumbers[4] = new int[] {1,4,7};
-        WinningNumbers[5] = new int[] {2,5,8};
-
-        WinningNumbers[6] = new int[] {0,4,8};
-        WinningNumbers[7] = new int[] {2,4,6};
-
-        // {0,1,2}, {3,4,5}, {6,7,8},   // horizontal wins
-        // {0,3,6}, {1,4,7}, {2,5,8},   // vertical wins
-        // {0,4,8}, {2,4,6}             // diagonal wins
-
         xScore.text = "X Wins: " + xWins; 
         oScore.text = "O Wins: " + oWins;  
-
-    }
-
-     public void TakeDamage( int damage, int playerHealth, HealthBar healthbar ) // Will include TIME BONUS feature for extra damage in the near future
-    {
-        print("damage: " + damage);
-        print("playerHealth: " + playerHealth);
-        print("healthbar: " + healthbar);
-
-        playerHealth -= damage;
-        
-        if( healthbar == xHealthBar ) // CHECK REFERENCE FOR WHICH HEALTHBAR
-        {
-            xCurrentHealth = playerHealth;
-            xHealthBar.SetHealth(xCurrentHealth);
-
-            print("X CONDITION");
-        }
-
-        else if( healthbar == oHealthBar ) // CHECKS REFERENCE FOR WHICH HEALTHBAR
-        {
-            oCurrentHealth = playerHealth;
-            oHealthBar.SetHealth(oCurrentHealth);
-            print("O CONDITION");
-        }
-
-        // healthbar.SetHealth(playerHealth);
-        // print("After SetHealth playerhealth now is: " + playerHealth);
-        // print("xHealth: " + xCurrentHealth);
-        // print("oHealth: " + oCurrentHealth);
-
-       
+        turnManager.Reset(firstPlayer);
 
     }
 
@@ -138,11 +92,12 @@ public class GM : MonoBehaviour
     {
         // Debug.Log("winText COROUNTINE ACTIVE");
 
-         if( oCurrentHealth <= 0 || xCurrentHealth <= 0) // PLAYER < 0 HEALTH
+         if( oHealthBar.playerHealth <= 0 ||
+          xHealthBar.playerHealth <= 0) // PLAYER < 0 HEALTH
         {
             Debug.Log("ENDING COROUTINE...");
             winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
-            resetButton.SetActive(true);
+            resetGame.gameObject.SetActive(true);
             StopCoroutine(winTextCoroutine()); // STOP Coroutine 
             yield return null;
         }
@@ -160,7 +115,7 @@ public class GM : MonoBehaviour
 
     public void GameWin(int[] winningSpots)
     {
-        FindObjectOfType<AudioManager>().Play("Damage");
+        audioManager.Play("Damage");
 
 
         // WIN TYPE CASES
@@ -206,12 +161,9 @@ public class GM : MonoBehaviour
 
         //END CASES
 
-
-
         foreach(Button space in gridSpaces)
         {
             space.interactable = false;
-            counter = 0;
         }
 
         //   winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
@@ -221,12 +173,7 @@ public class GM : MonoBehaviour
 
     public void CheckWinConditions()
     {
-        counter += 1;
-
-        // We want to
-        // 1 - Indicate TYPE of win ( WinningNumbers[0-7] )
-        // 2 - Indicate WHO won ONCE
-        // 3 - Incriment and display win count for X or O player
+        resetTimer.ResetTimer();
 
         foreach(Button space in gridSpaces)
             {
@@ -240,18 +187,7 @@ public class GM : MonoBehaviour
                             xScore.text = "X Wins: " + xWins; 
                             playerWin = true;
                             GameWin(win);
-
-                            TakeDamage(7, oCurrentHealth, oHealthBar);
-
-                            // if( oCurrentHealth <= 0) // PLAYER < 0 HEALTH
-                            // {
-                            //     StopCoroutine(winTextCoroutine());
-                            //     Debug.Log("X GAME WIN!");
-                            //     winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
-                            //     resetButton.SetActive(true);
-
-                            // }
-
+                            oHealthBar.TakeDamage(7);
                             StartCoroutine(winTextCoroutine());
                             return;
                         }
@@ -263,21 +199,8 @@ public class GM : MonoBehaviour
                             oScore.text = "O Wins: " + oWins; 
                             playerWin = true;
                             GameWin(win);
-                            TakeDamage(7, xCurrentHealth, xHealthBar);
-
-                            //  if( xCurrentHealth <= 0) // PLAYER < 0 HEALTH
-                            // {
-                            //     StopCoroutine(winTextCoroutine());
-                            //     Debug.Log("O GAME WIN!");
-                            //     winText.GetComponent<Text>().enabled = true; //enables Win Text on GameWin
-                            //     resetButton.SetActive(true);
-
-                            // }
-
-                            StartCoroutine(winTextCoroutine());
-
-
-                            
+                            xHealthBar.TakeDamage(7);
+                            StartCoroutine(winTextCoroutine());                         
                             return;
                         }
                
@@ -285,7 +208,7 @@ public class GM : MonoBehaviour
 
     }
 
-        if(counter == 9 && playerWin == false) // TIE GAME will FLASH each gameobject then RESET the game 
+        if(turnManager.turnNumber == 9 && playerWin == false) // TIE GAME will FLASH each gameobject then RESET the game 
         {
             Debug.Log("TIE GAME!!");
             resetGame.Reset();

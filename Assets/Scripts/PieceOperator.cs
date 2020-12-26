@@ -10,28 +10,7 @@ public class PieceOperator : MonoBehaviour
     public GameObject OPiece;
     public Turn currentTurn;
     public Button button;
-    public int counter = 0;
     public int spaceNumber;
-
-    public Text buttonText;
-
-    PlayerPiece currentState;
-
-    // public HealthBar healthBar;
-    // public int maxHealth = 100;
-    // public int currentHealth;
-    
-    public void Start()
-    {
-        buttonText.text = ""; // BUTTON TEXT STARTS EMPTY ""
-        // healthBar.SetMaxHealth(maxHealth);
-    }
-
-    // public void TakeDamage( int damage )
-    // {
-    //     currentHealth -= damage;
-    //     healthBar.SetHealth(currentHealth);
-    // }
 
     public void PlacePiece() // OnClick() for each button when its clicked
     {
@@ -42,7 +21,7 @@ public class PieceOperator : MonoBehaviour
 
             button.interactable = false; // disables buttons from being clicked
 
-            if(currentTurn.currentState == 0) // X Turn.. I Don't understand how this code works 
+            if(currentTurn.currentState == PlayerPiece.X) // X Turn.. I Don't understand how this code works 
             {
                 print("X's Turn");
                 print("currentTurn.currentState: " + currentTurn.currentState);
@@ -52,10 +31,6 @@ public class PieceOperator : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("XPlay");
 
                 GM.Instance.CheckWinConditions();
-
-                
-
-
 
             }
 
@@ -68,42 +43,10 @@ public class PieceOperator : MonoBehaviour
 
                 FindObjectOfType<AudioManager>().Play("OPlay");
 
-                GM.Instance.CheckWinConditions();
-
-
-                
+                GM.Instance.CheckWinConditions();    
 
             };
-
-            // GM.Instance.CheckWinConditions();  //Calls GM to check win
-
-
     }
-
-//  public void CheckWinConditions()
-//     {
-//         counter += 1;
-
-//         Debug.Log("Counter: " + counter);
-        
-//         Debug.Log("Checking Win");
-
-//         if(counter == 9)
-//         {
-//             Debug.Log("TIE GAME!!");
-//         }
-
-
-//     }
-    // public void NextTurn()
-    // {
-    //     currentState = (PlayerPiece)(((int)currentState + 1 ) % 3);
-
-    //     Debug.Log("current state: " + currentState);
-
-
-    //     // NextTurn will cycle the turn, incrementing up or resetting to P1 
-    // }
 
     public void TestFunction()
     {
@@ -114,29 +57,6 @@ public class PieceOperator : MonoBehaviour
     {
         XPiece.SetActive(false);
         OPiece.SetActive(false);
-
     }
-
-    public void Update()
-    {
-
-
-        // RAYCAST UPDATES CLICK EVERY FRAME, WHICH WE DON'T WANT
-        // if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
-        // //Research GetMouseButton and EventSystem
-        // {
-
-        //     RaycastHit hit;
-        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //     if (Physics.Raycast(ray, out hit, rayLength, layermask))
-        //     {
-
-        //         Instantiate( piece, hit.transform.position, hit.transform.rotation);
-        //         piece.SetActive(true);
-
-                
-        //         Debug.Log(hit.collider.name);
-        //     }
-        }
        
     }

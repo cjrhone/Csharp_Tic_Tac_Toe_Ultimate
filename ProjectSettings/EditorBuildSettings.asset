@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameBoard.unity
     guid: 0d5bba8782f6c4ca483ba8242f51c6b6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/first.unity
     guid: fb066128aa3d0457fb8ad3d0a66cd6f8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/second.unity
     guid: 99575ec1d07ab4c56a7dab49d6453252
   - enabled: 0

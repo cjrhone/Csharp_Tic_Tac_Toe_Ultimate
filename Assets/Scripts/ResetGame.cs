@@ -48,9 +48,8 @@ public class ResetGame : MonoBehaviour
 
             
 
-        GM.Instance.counter = 0; //resets counter to 0 if reset button called
+        GM.Instance.turnManager.Reset(GM.Instance.firstPlayer); //resets counter to 0 if reset button called
         GM.Instance.playerWin = false; // resets playerWin trigger -- used to indicate tie or win
-
         }
 
        
@@ -69,11 +68,8 @@ public class ResetGame : MonoBehaviour
     public void ReplayButton()
     {
         Reset();
-        GM.Instance.xCurrentHealth = GM.Instance.maxHealth; // Reset health to default max health ( value )
-        GM.Instance.xHealthBar.SetMaxHealth(GM.Instance.maxHealth); // Reset healthbar to default ( on-screen visual )
-
-        GM.Instance.oCurrentHealth = GM.Instance.maxHealth;
-        GM.Instance.oHealthBar.SetMaxHealth(GM.Instance.maxHealth);
+        GM.Instance.xHealthBar.Initialize(GM.maxHealth); // Reset healthbar to default ( on-screen visual )
+        GM.Instance.oHealthBar.Initialize(GM.maxHealth);
 
     }
 
