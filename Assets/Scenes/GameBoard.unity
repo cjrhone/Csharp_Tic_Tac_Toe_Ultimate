@@ -182,9 +182,7 @@ MonoBehaviour:
   OPiece: {fileID: 555558415}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 59115154}
-  counter: 0
   spaceNumber: 4
-  buttonText: {fileID: 1650856023}
 --- !u!114 &59115154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,7 +804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55510b6f40fea43f187c609ddb2dba16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
+  turnManager: {fileID: 1286689045}
+  firstPlayer: 0
   xWins: 0
   oWins: 0
   gridSpaces:
@@ -1192,9 +1191,7 @@ MonoBehaviour:
   OPiece: {fileID: 82271580}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 176321235}
-  counter: 0
   spaceNumber: 5
-  buttonText: {fileID: 2095085182}
 --- !u!114 &176321235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2140,9 +2137,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
-  counter: 0
   spaceNumber: 0
-  buttonText: {fileID: 0}
 --- !u!1001 &412880167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3149,9 +3144,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
-  counter: 0
   spaceNumber: 0
-  buttonText: {fileID: 0}
 --- !u!1001 &815134762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3422,9 +3415,7 @@ MonoBehaviour:
   OPiece: {fileID: 611979833}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1033708516}
-  counter: 0
   spaceNumber: 1
-  buttonText: {fileID: 1044783210}
 --- !u!114 &1033708516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3654,9 +3645,7 @@ MonoBehaviour:
   OPiece: {fileID: 484339228190422634}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1092904804}
-  counter: 0
   spaceNumber: 6
-  buttonText: {fileID: 139438081}
 --- !u!114 &1092904804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3943,9 +3932,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
-  counter: 0
   spaceNumber: 0
-  buttonText: {fileID: 0}
 --- !u!1001 &1146039542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4158,9 +4145,7 @@ MonoBehaviour:
   OPiece: {fileID: 62245107}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1186425425}
-  counter: 0
   spaceNumber: 7
-  buttonText: {fileID: 760402619}
 --- !u!114 &1186425425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4309,9 +4294,7 @@ MonoBehaviour:
   OPiece: {fileID: 1850273781}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1211885645}
-  counter: 0
   spaceNumber: 0
-  buttonText: {fileID: 1569545163}
 --- !u!114 &1211885645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4546,6 +4529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  turnNumber: 1
 --- !u!4 &1286689046
 Transform:
   m_ObjectHideFlags: 0
@@ -4761,9 +4745,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
-  counter: 0
   spaceNumber: 0
-  buttonText: {fileID: 0}
 --- !u!1 &1439152103
 GameObject:
   m_ObjectHideFlags: 0
@@ -4926,9 +4908,7 @@ MonoBehaviour:
   OPiece: {fileID: 1862861511}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1467967362}
-  counter: 0
   spaceNumber: 8
-  buttonText: {fileID: 1780318050}
 --- !u!114 &1467967362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5077,9 +5057,7 @@ MonoBehaviour:
   OPiece: {fileID: 1781079869}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 1483676968}
-  counter: 0
   spaceNumber: 2
-  buttonText: {fileID: 473022412}
 --- !u!114 &1483676968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6469,9 +6447,7 @@ MonoBehaviour:
   OPiece: {fileID: 761778882}
   currentTurn: {fileID: 1286689045}
   button: {fileID: 2008048275}
-  counter: 0
   spaceNumber: 3
-  buttonText: {fileID: 374700566}
 --- !u!114 &2008048275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6728,9 +6704,7 @@ MonoBehaviour:
   OPiece: {fileID: 0}
   currentTurn: {fileID: 0}
   button: {fileID: 0}
-  counter: 0
   spaceNumber: 0
-  buttonText: {fileID: 0}
 --- !u!1 &2094950886 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5358530558470453908, guid: 95d229ac8e2d247f39956dbd74394475,

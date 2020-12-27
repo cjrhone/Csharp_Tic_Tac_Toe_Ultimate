@@ -11,52 +11,45 @@ public class PieceOperator : MonoBehaviour
     public Turn currentTurn;
     public Button button;
     public int spaceNumber;
+    public bool SpotTaken {get; private set;}
 
     public void PlacePiece() // OnClick() for each button when its clicked
     {
 
-            // buttonText.text = currentTurn.currentState.ToString(); // REPLACES blank "" text with X/O 
-
-            currentTurn.NextTurn();
-
+        if(!SpotTaken){
             button.interactable = false; // disables buttons from being clicked
 
-            if(currentTurn.currentState == PlayerPiece.X) // X Turn.. I Don't understand how this code works 
-            {
-                print("X's Turn");
-                print("currentTurn.currentState: " + currentTurn.currentState);
+            switch(currentTurn.currentState)
+            { 
+            case PlayerPiece.O: // X Turn.. I Don't understand how this code works 
+                print("O's Turn");
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
+                GM.Instance.audioManager.Play("OPlay");
+                break;
 
-                FindObjectOfType<AudioManager>().Play("XPlay");
-
-                GM.Instance.CheckWinConditions();
-
-            }
-
-            else // O Turn
-            {
-                print("O's Turn");
-                print("currentTurn.currentState: " + currentTurn.currentState);
+            case PlayerPiece.X:
+                print("X's Turn");
                 GM.Instance.xArray.Add(spaceNumber); // Add indicated spaceNumber to XArray
                 XPiece.SetActive(true);
+                GM.Instance.audioManager.Play("XPlay");
+                break;
+            }
 
-                FindObjectOfType<AudioManager>().Play("OPlay");
-
-                GM.Instance.CheckWinConditions();    
-
-            };
-    }
-
-    public void TestFunction()
-    {
-        Debug.Log("TEST FUNCTION WORKING!");
+            print("currentTurn.currentState: " + currentTurn.currentState);
+            GM.Instance.CheckWinConditions();  
+            SpotTaken = true;
+            currentTurn.NextTurn();
+        } else {
+            Debug.LogError("THIS SPOT'S TAKEN!");
+        }
     }
 
     public void ResetPieces()
     {
         XPiece.SetActive(false);
         OPiece.SetActive(false);
+        SpotTaken = false;
     }
        
     }

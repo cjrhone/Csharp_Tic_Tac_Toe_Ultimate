@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Countdown : MonoBehaviour
 {
-    public float timeLeft = 5.0f;
+    private float timeLeft = 5.0f;
     public Text timerText;
     public GameObject cube;
-
+    
     void Start()
     {
         timerText.text = timeLeft.ToString("F2");
     }
 
-    
-    void Update()
+    void FixedUpdate()
     {
-        if (timeLeft <= 0)
-        {
-            timeLeft = 5.0f;
+        timeLeft -= Time.deltaTime;
+        if(timeLeft <= 0.0f){
+          timeLeft = 0;
+          //TODO: Here we would add an "event" that brodcasts that the timer's up
         }
 
-        timeLeft -= Time.deltaTime;
         timerText.text = timeLeft.ToString("F2");
         
     }

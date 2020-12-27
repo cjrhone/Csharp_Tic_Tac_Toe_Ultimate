@@ -85,7 +85,7 @@ public class GM : MonoBehaviour
         xScore.text = "X Wins: " + xWins; 
         oScore.text = "O Wins: " + oWins;  
         turnManager.Reset(firstPlayer);
-
+        //TODO: subscribe to resetTimer's "broadcasting" of time being up, so that we can choose a random move
     }
 
     IEnumerator winTextCoroutine()

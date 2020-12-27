@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum PlayerPiece 
 {
-   X,
-   O,
+   X, // int 0
+   O, // int 1 
    PLAYER_PIECE_COUNT //keep this last always
 }
