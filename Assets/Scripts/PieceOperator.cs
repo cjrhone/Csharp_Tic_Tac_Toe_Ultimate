@@ -11,17 +11,16 @@ public class PieceOperator : MonoBehaviour
     public Turn currentTurn;
     public Button button;
     public int spaceNumber;
-    public bool SpotTaken {get; private set;}
 
     public void PlacePiece() // OnClick() for each button when its clicked
     {
 
-        if(!SpotTaken){
+        if(button.interactable = true){
             button.interactable = false; // disables buttons from being clicked
 
             switch(currentTurn.currentState)
             { 
-            case PlayerPiece.O: // X Turn.. I Don't understand how this code works 
+            case PlayerPiece.O: // X Turn
                 print("O's Turn");
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
@@ -38,18 +37,15 @@ public class PieceOperator : MonoBehaviour
 
             print("currentTurn.currentState: " + currentTurn.currentState);
             GM.Instance.CheckWinConditions();  
-            SpotTaken = true;
             currentTurn.NextTurn();
-        } else {
-            Debug.LogError("THIS SPOT'S TAKEN!");
-        }
+        } 
     }
 
-    public void ResetPieces()
-    {
-        XPiece.SetActive(false);
-        OPiece.SetActive(false);
-        SpotTaken = false;
-    }
+    // public void ResetPieces()
+    // {
+    //     XPiece.SetActive(false);
+    //     OPiece.SetActive(false);
+    //     // SpotTaken = false; // Implement SpotTaken to ResetGame Script 
+    // }
        
     }

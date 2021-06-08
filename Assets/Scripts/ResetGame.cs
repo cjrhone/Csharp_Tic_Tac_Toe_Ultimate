@@ -9,7 +9,6 @@ public class ResetGame : MonoBehaviour
     // Reset PlayerPiece to "" -- this may involve setting up enum to start with ""
     // enable all buttons to be interactable 
 
-    public PieceOperator placedPieces;
     public Button[] buttons;
     public Text newText;
     public Turn currentTurn;
@@ -29,7 +28,7 @@ public class ResetGame : MonoBehaviour
 
         foreach (Button button in buttons)
         {
-            button.interactable = true; // enables each button
+            button.interactable = true; // SHOULD enable each button but isn't
             newText = button.GetComponentInChildren<Text>(); //grabs text child in each button
             newText.text = ""; // resets to blank value
 
@@ -39,11 +38,14 @@ public class ResetGame : MonoBehaviour
             if(xpiece)
             {
                 xpiece.SetActive(false);
+                print("Resetting X Piece: " + xpiece);
+                
             }
 
             if(opiece)
             {
                 opiece.SetActive(false);
+                print("Resetting O Piece: " + opiece);
             }
 
             
@@ -60,9 +62,6 @@ public class ResetGame : MonoBehaviour
         GM.Instance.oArray = new List<int>();
 
         currentTurn.currentState = 0;
-
-
-        // placedPieces.button.interactable = true;
     }
 
     public void ReplayButton()
