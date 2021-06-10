@@ -9,6 +9,7 @@ public class ResetGame : MonoBehaviour
     // Reset PlayerPiece to "" -- this may involve setting up enum to start with ""
     // enable all buttons to be interactable 
 
+    public GameObject transitionScreen;
     public Button[] buttons;
     public Text newText;
     public Turn currentTurn;
@@ -25,6 +26,11 @@ public class ResetGame : MonoBehaviour
         }
 
         FindObjectOfType<AudioManager>().Play("Reset");
+
+        foreach(var gridSpace in GM.Instance.gridSpaces){
+            gridSpace.spinO.ResetAnimation();
+            gridSpace.spinX.ResetAnimation();
+        }
 
         foreach (Button button in buttons)
         {
@@ -57,15 +63,17 @@ public class ResetGame : MonoBehaviour
        
 
         // Reset Array Pieces
-        winText.enabled = false;
-        GM.Instance.xArray = new List<int>();
-        GM.Instance.oArray = new List<int>();
+        // winText.enabled = false;
+        GM.Instance.xArray = new List<int>(); // Reset xArray
+        GM.Instance.oArray = new List<int>(); // Reset oArray
 
-        currentTurn.currentState = 0;
+        currentTurn.currentState = 0; // Begin with X turn
     }
 
     public void ReplayButton()
     {
+        transitionScreen.SetActive(false);
+        winText.gameObject.SetActive(false);
         Reset();
         GM.Instance.xHealthBar.Initialize(GM.maxHealth); // Reset healthbar to default ( on-screen visual )
         GM.Instance.oHealthBar.Initialize(GM.maxHealth);

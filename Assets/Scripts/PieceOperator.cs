@@ -11,6 +11,8 @@ public class PieceOperator : MonoBehaviour
     public Turn currentTurn;
     public Button button;
     public int spaceNumber;
+    public spinthatbitch spinX;
+    public spinthatbitch spinO;
 
     public void PlacePiece() // OnClick() for each button when its clicked
     {
@@ -24,6 +26,8 @@ public class PieceOperator : MonoBehaviour
                 print("O's Turn");
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
+                // OPiece.transform.Rotate(new Vector3(10,10,10) * Time.deltaTime);
+                // print("OPiece snap Transform");
                 GM.Instance.audioManager.Play("OPlay");
                 break;
 
