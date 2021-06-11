@@ -2,14 +2,24 @@
 
 public class spinthatbitch : MonoBehaviour
 {
+    bool isX;
     bool isInWinState;
     bool isRotatingToWinPosition;
     Camera cameraRef;
 
-    Vector3 winPosition = new Vector3 (-90f, 0f, 90f);
+    Quaternion winPositionX;
+    Quaternion winPositionO;
+
+    float animationRotationTimeSeconds = 0.50f;
+    float animationSpeed = 4.0f;
+    float animationStartTimeMSec;
+    float animationEndTimeMSec;
 
     void Start (){
         cameraRef = GameObject.FindObjectOfType<Camera>();
+        winPositionX = Quaternion.Euler(-90f, 0f, 90f);
+        winPositionO = Quaternion.Euler(0f, 0f, 90f);
+        isX = gameObject.name.Contains("x"); //ALERT ALERT IF GAMEOBJECT NAME CHANGES, THIS NEEDS TO BE LOOKED AT
     }
 
     // Update is called once per frame
@@ -20,14 +30,13 @@ public class spinthatbitch : MonoBehaviour
             if(isRotatingToWinPosition){
                 //Check if the difference between our current rotation (transform.eulerAngles) and our destinantion rotation (winPosition) is large enough that we should keep on rotating
                 // if the difference is too small, then set the final rotation values to the object (we've rotated enough that we don't have to animate frame by frame anymore).
-                if(Vector3.SqrMagnitude(transform.eulerAngles - winPosition) > 0.0001f){ 
+                if(Time.time < animationEndTimeMSec){ 
                     //Every frame, we are calculating a small chunk to rotate the object by that gets us closer to the destination (winPosition), we then set the current rotation values
                     //to add that small chunk to the object's rotation, eventually getting as close as possible to the destination.
-                    transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, winPosition, Time.deltaTime);
-                    Debug.Log($"Still Rotating for {gameObject.name}");
+                    transform.rotation = Quaternion.Lerp(transform.rotation, isX ? winPositionX : winPositionO, animationSpeed * Time.deltaTime);
                 } else {
                     //set the final rotation to the object, we're done animating!
-                    transform.eulerAngles = winPosition;
+                    transform.rotation = isX ? winPositionX : winPositionO;
                     isRotatingToWinPosition = false;
                 }
             }
@@ -42,6 +51,10 @@ public class spinthatbitch : MonoBehaviour
     public void PlayWinAnimation(){
         isInWinState = true;
         isRotatingToWinPosition = true;
+        animationStartTimeMSec = Time.time;
+        animationEndTimeMSec = animationStartTimeMSec + animationRotationTimeSeconds;
+
+        Debug.Log($"StartTime is {animationStartTimeMSec} End time is {animationEndTimeMSec}");
         //Do special stuff
     }
 
