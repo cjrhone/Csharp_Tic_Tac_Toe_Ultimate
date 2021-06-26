@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Countdown.cs" />
      <Compile Include="Assets\Scripts\GM.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\PieceOperator.cs" />
      <Compile Include="Assets\Scripts\PlayerPiece.cs" />
      <Compile Include="Assets\Scripts\ResetGame.cs" />
