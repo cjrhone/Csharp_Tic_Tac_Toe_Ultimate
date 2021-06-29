@@ -8,7 +8,8 @@ public class Countdown : MonoBehaviour
 {
     private float timeLeft = 5.0f;
     public Text timerText;
-    public GameObject cube;
+    public Explode cube;
+    bool cubeExploded;
     
     void Start()
     {
@@ -21,7 +22,13 @@ public class Countdown : MonoBehaviour
         if(timeLeft <= 0.0f){
           timeLeft = 0;
           //TODO: Here we would add an "event" that brodcasts that the timer's up
-        }
+          Debug.Log("Times up!");
+
+        // if(!cubeExploded){
+        //     cubeExploded = true;
+        //     cube.CreateSmallCubes();
+        // }
+    }
 
         timerText.text = timeLeft.ToString("F2");
         
@@ -41,5 +48,6 @@ public class Countdown : MonoBehaviour
     public void ResetTimer()
     {
         timeLeft = 5.0f;
+        // cubeExploded = false;
     }
 }

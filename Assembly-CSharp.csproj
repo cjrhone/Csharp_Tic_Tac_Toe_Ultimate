@@ -57,6 +57,8 @@
      <Compile Include="Assets\MainMenu.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Countdown.cs" />
+     <Compile Include="Assets\Scripts\Destructible.cs" />
+     <Compile Include="Assets\Scripts\Explode.cs" />
      <Compile Include="Assets\Scripts\GM.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
