@@ -10,35 +10,54 @@ public class Destructible : MonoBehaviour
     public GameObject destroyedVersion;
     public GameObject choiceText;
     public float radius = 5.0f;
-    public float force = 10.0f;
+    public float force = 700.0f;
     public bool choice = false;
 
     // Rigidbody test_rb = destroyedVersion.GetComponent<Rigidbody>();
     // public GameObject test_rb = destroyedVersion.GetComponent<Rigidbody>();
 
+
     void OnMouseDown()
     {
         Debug.Log("Boom");
-        Instantiate(destroyedVersion, transform.position, transform.rotation);
+        GameObject shatteredX = Instantiate(destroyedVersion, intactVersion.transform.position, intactVersion.transform.rotation);
+        intactVersion.SetActive(false);
 
-        destroyedVersion.GetComponent<Rigidbody>().useGravity = false;
-        destroyedVersion.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, radius);
-        Destroy(intactVersion); // This Instance Dies here.
+        Vector3 explosionPos = shatteredX.transform.position; // set position for explosion
 
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius); // creates a sphere collider to detect objects
+
+        foreach (Collider nearbyObject in colliders) // for each object in sphere collider
+        {
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>(); // obtain Rigidbody component
+            if(rb != null) // if contains Rigidbody
+            {
+                rb.AddExplosionForce(force, explosionPos, radius); // make it explode 
+            }
+
+        }
+
+
+        Destroy(shatteredX, 2f);
 
         if(!choice)
         {
             bool choice = true;
             Debug.Log("A Choice has been made True");
             choiceText.SetActive(true);
+
+            StartCoroutine(CreateNewX(intactVersion));
         }
-        
-        Rigidbody rb = destroyedVersion.AddComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.AddExplosionForce(force, transform.position, radius);
 
-        Destroy(destroyedVersion, 3f);
+        IEnumerator CreateNewX(GameObject newPiece) 
+        {
+            yield return new WaitForSeconds(3f);
 
+            intactVersion.SetActive(true);
+            choiceText.SetActive(false);
+
+            StopCoroutine(CreateNewX(intactVersion));
+        }
 
     }
 }
