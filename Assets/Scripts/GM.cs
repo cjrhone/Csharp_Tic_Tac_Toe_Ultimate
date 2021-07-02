@@ -54,21 +54,15 @@ public class GM : MonoBehaviour
     //public Text spaceText;
     public GameObject transitionScreen;
     public Text winText;
-
     public Text xScore;
     public Text oScore;
     public bool playerWin = false;
-
     public Countdown resetTimer;
     public Text timerText;
-
     public ResetGame resetGame; // SCRIPT FOR ResetGame
-
     public HealthBar xHealthBar; // X HEALTH BAR REFERENCE
     public HealthBar oHealthBar; // O HEALTH BAR REFERENCE 
-
     public static int maxHealth = 25; // DEFAULT MAX HEALTH
-
     public AudioManager audioManager;
 
     void Start()
@@ -241,6 +235,7 @@ public class GM : MonoBehaviour
         {
             //Insert flash VFX for all pieces
             Debug.Log("TIE GAME!!");
+            turnManager.Reset(firstPlayer);
             resetGame.Reset();
 
         }

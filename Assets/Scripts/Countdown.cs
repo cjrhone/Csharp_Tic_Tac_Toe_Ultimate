@@ -22,7 +22,7 @@ public class Countdown : MonoBehaviour
         if(timeLeft <= 0.0f){
           timeLeft = 0;
           //TODO: Here we would add an "event" that brodcasts that the timer's up
-          Debug.Log("Times up!");
+        //   Debug.Log("Times up!");
 
         // if(!cubeExploded){
         //     cubeExploded = true;

@@ -26,8 +26,6 @@ public class PieceOperator : MonoBehaviour
                 print("O's Turn");
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
-                // OPiece.transform.Rotate(new Vector3(10,10,10) * Time.deltaTime);
-                // print("OPiece snap Transform");
                 GM.Instance.audioManager.Play("OPlay");
                 break;
 

@@ -161,7 +161,7 @@ MonoBehaviour:
   destroyedVersion: {fileID: 9203303297768815322, guid: d9429e1cb1cd74b4ba77496069f1425d,
     type: 3}
   choiceText: {fileID: 624432100}
-  radius: 3.9
+  radius: 1.1
   force: 302.79
   choice: 0
 --- !u!64 &137050159
