@@ -21,7 +21,7 @@ public class spinthatbitch : MonoBehaviour
 
     //Explosion
     public GameObject shatteredPiece;
-    public float radius = 5.0f;
+    public float radius = 3.0f;
     public float force = 700.0f;
 
     void Start (){
