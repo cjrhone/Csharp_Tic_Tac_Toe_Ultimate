@@ -25,7 +25,7 @@ public class ResetGame : MonoBehaviour
             resetButton.SetActive(false);
         }
 
-        FindObjectOfType<AudioManager>().Play("Reset");
+        // FindObjectOfType<AudioManager>().Play("Reset");
 
         foreach(var gridSpace in GM.Instance.gridSpaces){
             gridSpace.spinO.ResetAnimation();
@@ -35,8 +35,8 @@ public class ResetGame : MonoBehaviour
         foreach (Button button in buttons)
         {
             button.interactable = true; // SHOULD enable each button but isn't
-            newText = button.GetComponentInChildren<Text>(); //grabs text child in each button
-            newText.text = ""; // resets to blank value
+            // newText = button.GetComponentInChildren<Text>(); //grabs text child in each button
+            // newText.text = ""; // resets to blank value
 
             GameObject xpiece = GameObject.Find("xpiece");
             GameObject opiece = GameObject.Find("opiece");
