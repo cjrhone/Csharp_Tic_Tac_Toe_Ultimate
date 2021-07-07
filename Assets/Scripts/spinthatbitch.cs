@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class spinthatbitch : MonoBehaviour
 {
@@ -14,6 +18,11 @@ public class spinthatbitch : MonoBehaviour
     float animationSpeed = 4.0f;
     float animationStartTimeMSec;
     float animationEndTimeMSec;
+
+    //Explosion
+    public GameObject shatteredPiece;
+    public float radius = 5.0f;
+    public float force = 700.0f;
 
     void Start (){
         cameraRef = GameObject.FindObjectOfType<Camera>();
@@ -38,6 +47,8 @@ public class spinthatbitch : MonoBehaviour
                     //set the final rotation to the object, we're done animating!
                     transform.rotation = isX ? winPositionX : winPositionO;
                     isRotatingToWinPosition = false;
+
+                    StartCoroutine(WaitToExplode());
                 }
             }
         } else { //default
@@ -68,5 +79,30 @@ public class spinthatbitch : MonoBehaviour
     //Returns the piece back to initial state
     public void ResetAnimation(){
         isInWinState = false;
+    }
+
+    public IEnumerator WaitToExplode()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("SETS PIECE INACTIVE -- THEN INSTANTIATE EXPLOSION!");
+        gameObject.SetActive(false);
+
+        GameObject explosionPiece = Instantiate(shatteredPiece, gameObject.transform.position, gameObject.transform.rotation);
+
+        Vector3 explosionPos = explosionPiece.transform.position; // set position for explosion
+
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius); // creates a sphere collider to detect objects
+
+        foreach (Collider nearbyObject in colliders) // for each object in sphere collider
+        {
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>(); // obtain Rigidbody component
+            if(rb != null) // if contains Rigidbody
+            {
+                rb.AddExplosionForce(force, explosionPos, radius); // make it explode 
+            }
+
+        }
+
+        Destroy(explosionPiece, 3f);
     }
 }
