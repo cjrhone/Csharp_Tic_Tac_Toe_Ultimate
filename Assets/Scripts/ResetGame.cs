@@ -23,9 +23,11 @@ public class ResetGame : MonoBehaviour
         if(resetButton.activeSelf == true) // IF RESET BUTTON VISIBLE -- HIDE IT!
         {
             resetButton.SetActive(false);
+            FindObjectOfType<AudioManager>().Play("battle");
+            FindObjectOfType<AudioManager>().Play("select");
         }
 
-        // FindObjectOfType<AudioManager>().Play("Reset");
+
 
         foreach(var gridSpace in GM.Instance.gridSpaces){
             gridSpace.spinO.ResetAnimation();

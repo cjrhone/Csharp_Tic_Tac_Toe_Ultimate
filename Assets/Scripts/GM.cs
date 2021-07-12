@@ -63,7 +63,6 @@ public class GM : MonoBehaviour
     public HealthBar xHealthBar; // X HEALTH BAR REFERENCE
     public HealthBar oHealthBar; // O HEALTH BAR REFERENCE 
     public static int maxHealth = 25; // DEFAULT MAX HEALTH
-    public AudioManager audioManager;
 
     void Start()
     {
@@ -83,13 +82,17 @@ public class GM : MonoBehaviour
         //TODO: subscribe to resetTimer's "broadcasting" of time being up, so that we can choose a random move
     }
 
+    //PLAYER WIN
     IEnumerator winTextCoroutine()
     {
-        // Debug.Log("winText COROUNTINE ACTIVE");
 
          if( oHealthBar.playerHealth <= 0 ||
           xHealthBar.playerHealth <= 0) // PLAYER < 0 HEALTH
         {
+        FindObjectOfType<AudioManager>().StopPlaying("battle");
+        FindObjectOfType<AudioManager>().Play("victory");
+
+
             transitionScreen.gameObject.SetActive(true);
             Debug.Log("ENDING COROUTINE...");
             winText.gameObject.SetActive(true);
@@ -114,7 +117,6 @@ public class GM : MonoBehaviour
 
     public void GameWin(int[] winningSpots)
     {
-        audioManager.Play("Damage");
         foreach(int winningSpot in winningSpots){
             gridSpaces[winningSpot].spinX.PlayWinAnimation();
             gridSpaces[winningSpot].spinO.PlayWinAnimation();
@@ -237,6 +239,8 @@ public class GM : MonoBehaviour
             Debug.Log("TIE GAME!!");
             turnManager.Reset(firstPlayer);
             resetGame.Reset();
+            FindObjectOfType<AudioManager>().Play("tie");
+
 
         }
 

@@ -55,6 +55,8 @@ public class Destructible : MonoBehaviour
 
             intactVersion.SetActive(true);
             choiceText.SetActive(false);
+            FindObjectOfType<AudioManager>().Play("explode");
+
 
             StopCoroutine(CreateNewX(intactVersion));
         }

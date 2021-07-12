@@ -26,14 +26,15 @@ public class PieceOperator : MonoBehaviour
                 print("O's Turn");
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
-                GM.Instance.audioManager.Play("OPlay");
+                FindObjectOfType<AudioManager>().Play("oMove");
+
                 break;
 
             case PlayerPiece.X:
                 print("X's Turn");
                 GM.Instance.xArray.Add(spaceNumber); // Add indicated spaceNumber to XArray
                 XPiece.SetActive(true);
-                GM.Instance.audioManager.Play("XPlay");
+                FindObjectOfType<AudioManager>().Play("xMove");
                 break;
             }
 

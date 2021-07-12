@@ -14,6 +14,8 @@ public class Sound
    [Range(.1f, 3f)]
    public float pitch;
 
+   public bool loop;
+
 
    [HideInInspector] // hides inspector
    public AudioSource source; // creates audiosource reference ( for volume, pitch, etc ) 

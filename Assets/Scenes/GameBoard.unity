@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -898,7 +898,6 @@ MonoBehaviour:
   resetGame: {fileID: 361737101}
   xHealthBar: {fileID: 738039737}
   oHealthBar: {fileID: 169580542}
-  audioManager: {fileID: 1604317567}
 --- !u!4 &163891707
 Transform:
   m_ObjectHideFlags: 0
@@ -911,7 +910,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &169580540
 GameObject:
@@ -1082,7 +1081,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -0.1, y: -30, z: 0}
 --- !u!1 &172064974
 GameObject:
@@ -2032,7 +2031,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &398690502
 GameObject:
@@ -2101,7 +2100,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &400890729
 PrefabInstance:
@@ -2452,7 +2451,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &473022410
 GameObject:
@@ -4612,7 +4611,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1250417062
 GameObject:
@@ -4691,7 +4690,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1357921856
 GameObject:
@@ -5580,70 +5579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee52c964783b4ca28d326ab10c0d5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1604317566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1604317568}
-  - component: {fileID: 1604317567}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1604317567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604317566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c5e93bc7ee3942678fe79d455aa2d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - clip: {fileID: 8300000, guid: 4c60f4fe6840d7f4fa604cd7b60469c4, type: 3}
-    name: XPlay
-    volume: 0.39
-    pitch: 1
-    source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: fdd8e9c3f6bb7154eb5e6168548c6733, type: 3}
-    name: OPlay
-    volume: 0.41
-    pitch: 1
-    source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 7b033a3a001edb545b4fd7acb0927c0d, type: 3}
-    name: Reset
-    volume: 0.26
-    pitch: 1
-    source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: b2199ad43fc443042a1e7cf54e8169fe, type: 3}
-    name: Damage
-    volume: 0.26
-    pitch: 1
-    source: {fileID: 0}
---- !u!4 &1604317568
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604317566}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.378047, y: -0.95750386, z: -8.354919}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1607661575
 GameObject:
   m_ObjectHideFlags: 0
@@ -6512,7 +6447,7 @@ RectTransform:
   - {fileID: 1767287089}
   - {fileID: 835907855}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7427,7 +7362,7 @@ PrefabInstance:
     - target: {fileID: 1448603569377910302, guid: 79f12c9335d28ac4d98fe54306011d76,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1448603569377910302, guid: 79f12c9335d28ac4d98fe54306011d76,
         type: 3}

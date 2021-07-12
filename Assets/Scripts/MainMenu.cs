@@ -11,12 +11,22 @@ public class LevelLoader : MonoBehaviour
 
     public void PlayGameVsPlayer() // Gameboard against player 
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); // passing levelIndex to LoadLevel through GetActiveScene() 
+        FindObjectOfType<AudioManager>().Play("select");
+        FindObjectOfType<AudioManager>().StopPlaying("menu");
+
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); // passing levelIndex to LoadLevel through GetActiveScene()
+
+        FindObjectOfType<AudioManager>().Play("battle");
+
+
 
     }
 
     public void QuitGame()
     {
+        FindObjectOfType<AudioManager>().Play("select");
+        FindObjectOfType<AudioManager>().StopPlaying("menu");
+
         Debug.Log("Quit");
         Application.Quit();
     }
