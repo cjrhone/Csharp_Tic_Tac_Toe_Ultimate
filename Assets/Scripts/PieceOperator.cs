@@ -14,11 +14,14 @@ public class PieceOperator : MonoBehaviour
     public spinthatbitch spinX;
     public spinthatbitch spinO;
 
+    public bool SpotTaken;
+
     public void PlacePiece() // OnClick() for each button when its clicked
     {
 
-        if(button.interactable = true){
+        if(button.interactable == true){
             button.interactable = false; // disables buttons from being clicked
+            SpotTaken = true;
 
             switch(currentTurn.currentState)
             { 
@@ -26,7 +29,7 @@ public class PieceOperator : MonoBehaviour
                 print("O's Turn");
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
-                FindObjectOfType<AudioManager>().Play("oMove");
+                FindObjectOfType<AudioManager>().Play(Sound.SoundType.oMove);
 
                 break;
 
@@ -34,7 +37,7 @@ public class PieceOperator : MonoBehaviour
                 print("X's Turn");
                 GM.Instance.xArray.Add(spaceNumber); // Add indicated spaceNumber to XArray
                 XPiece.SetActive(true);
-                FindObjectOfType<AudioManager>().Play("xMove");
+                FindObjectOfType<AudioManager>().Play(Sound.SoundType.xMove);
                 break;
             }
 
@@ -44,11 +47,14 @@ public class PieceOperator : MonoBehaviour
         } 
     }
 
-    // public void ResetPieces()
-    // {
-    //     XPiece.SetActive(false);
-    //     OPiece.SetActive(false);
-    //     // SpotTaken = false; // Implement SpotTaken to ResetGame Script 
-    // }
-       
+    public void ResetPiece()
+    {
+        print($"Resetting X Piece: {XPiece}");
+        XPiece.SetActive(false);
+        print($"Resetting O Piece: {OPiece}");
+        OPiece.SetActive(false);
+        SpotTaken = false;
+        button.interactable = true;
     }
+       
+}

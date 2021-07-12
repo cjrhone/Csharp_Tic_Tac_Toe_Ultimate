@@ -80,6 +80,7 @@ public class GM : MonoBehaviour
         oScore.text = "O Wins: " + oWins;  
         turnManager.Reset(firstPlayer);
         //TODO: subscribe to resetTimer's "broadcasting" of time being up, so that we can choose a random move
+        FindObjectOfType<AudioManager>().Play(Sound.SoundType.Battle);
     }
 
     //PLAYER WIN
@@ -89,9 +90,8 @@ public class GM : MonoBehaviour
          if( oHealthBar.playerHealth <= 0 ||
           xHealthBar.playerHealth <= 0) // PLAYER < 0 HEALTH
         {
-        FindObjectOfType<AudioManager>().StopPlaying("battle");
-        FindObjectOfType<AudioManager>().Play("victory");
-
+            FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Battle);
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Victory);
 
             transitionScreen.gameObject.SetActive(true);
             Debug.Log("ENDING COROUTINE...");
@@ -214,6 +214,8 @@ public class GM : MonoBehaviour
                             GameWin(win); // Passing winning numbers
                             oHealthBar.TakeDamage(7);
                             StartCoroutine(winTextCoroutine());
+                            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Explode_VO);
+
                             return;
                         }
 
@@ -225,7 +227,9 @@ public class GM : MonoBehaviour
                             playerWin = true;
                             GameWin(win); // Passing winning numbers
                             xHealthBar.TakeDamage(7);
-                            StartCoroutine(winTextCoroutine());                         
+                            StartCoroutine(winTextCoroutine());
+                            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Obliteration_VO);
+
                             return;
                         }
                
@@ -239,9 +243,8 @@ public class GM : MonoBehaviour
             Debug.Log("TIE GAME!!");
             turnManager.Reset(firstPlayer);
             resetGame.Reset();
-            FindObjectOfType<AudioManager>().Play("tie");
-
-
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Tie);
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Tie_VO);
         }
 
     }

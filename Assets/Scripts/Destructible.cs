@@ -42,10 +42,9 @@ public class Destructible : MonoBehaviour
 
         if(!choice)
         {
-            bool choice = true;
+            choice = true;
             Debug.Log("A Choice has been made True");
             choiceText.SetActive(true);
-
             StartCoroutine(CreateNewX(intactVersion));
         }
 
@@ -55,9 +54,7 @@ public class Destructible : MonoBehaviour
 
             intactVersion.SetActive(true);
             choiceText.SetActive(false);
-            FindObjectOfType<AudioManager>().Play("explode");
-
-
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Explode);
             StopCoroutine(CreateNewX(intactVersion));
         }
 

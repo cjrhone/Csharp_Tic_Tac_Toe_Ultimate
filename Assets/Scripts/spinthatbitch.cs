@@ -49,7 +49,7 @@ public class spinthatbitch : MonoBehaviour
                     isRotatingToWinPosition = false;
 
                     StartCoroutine(WaitToExplode());
-                    FindObjectOfType<AudioManager>().Play("riser");
+                    FindObjectOfType<AudioManager>().Play(Sound.SoundType.Riser);
 
                 }
             }
@@ -88,8 +88,7 @@ public class spinthatbitch : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Debug.Log("SETS PIECE INACTIVE -- THEN INSTANTIATE EXPLOSION!");
         gameObject.SetActive(false);
-        FindObjectOfType<AudioManager>().Play("explode");
-
+        FindObjectOfType<AudioManager>().Play(Sound.SoundType.Explode);
 
         GameObject explosionPiece = Instantiate(shatteredPiece, gameObject.transform.position, gameObject.transform.rotation);
 

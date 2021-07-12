@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoad : MonoBehaviour
+public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
 
@@ -11,12 +11,19 @@ public class LevelLoad : MonoBehaviour
 
     public void PlayGameVsPlayer() // Gameboard against player 
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); // passing levelIndex to LoadLevel through GetActiveScene() 
+        FindObjectOfType<AudioManager>().Play(Sound.SoundType.Select);
+        FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Menu);
 
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); // passing levelIndex to LoadLevel through GetActiveScene()
+
+        FindObjectOfType<AudioManager>().Play(Sound.SoundType.Ready_VO);
     }
 
     public void QuitGame()
     {
+        FindObjectOfType<AudioManager>().Play(Sound.SoundType.Select);
+        FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Menu);
+
         Debug.Log("Quit");
         Application.Quit();
     }
@@ -38,4 +45,16 @@ public class LevelLoad : MonoBehaviour
         //Load scene
         SceneManager.LoadScene(levelIndex);
     }
+    
+    // IEnumerator GameStart()
+    // {
+    //     yield return new WaitForSeconds(3f);
+    //     Time.timeScale = 0;
+    //     FindObjectOfType<AudioManager>().Play("battle");
+    //     FindObjectOfType<AudioManager>().Play("ready");
+    //     yield return new WaitForSeconds(3f);
+    //     Time.timeScale = 1;
+    //     Debug.Log("GameStart has finished");
+
+    // }
 }

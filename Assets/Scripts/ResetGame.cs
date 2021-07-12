@@ -23,11 +23,9 @@ public class ResetGame : MonoBehaviour
         if(resetButton.activeSelf == true) // IF RESET BUTTON VISIBLE -- HIDE IT!
         {
             resetButton.SetActive(false);
-            FindObjectOfType<AudioManager>().Play("battle");
-            FindObjectOfType<AudioManager>().Play("select");
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Battle);
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Select);
         }
-
-
 
         foreach(var gridSpace in GM.Instance.gridSpaces){
             gridSpace.spinO.ResetAnimation();
@@ -36,33 +34,11 @@ public class ResetGame : MonoBehaviour
 
         foreach (Button button in buttons)
         {
-            button.interactable = true; // SHOULD enable each button but isn't
-            // newText = button.GetComponentInChildren<Text>(); //grabs text child in each button
-            // newText.text = ""; // resets to blank value
-
-            GameObject xpiece = GameObject.Find("xpiece");
-            GameObject opiece = GameObject.Find("opiece");
-
-            if(xpiece)
-            {
-                xpiece.SetActive(false);
-                print("Resetting X Piece: " + xpiece);
-                
-            }
-
-            if(opiece)
-            {
-                opiece.SetActive(false);
-                print("Resetting O Piece: " + opiece);
-            }
-
-            
-
-        GM.Instance.turnManager.Reset(GM.Instance.firstPlayer); //resets counter to 0 if reset button called
-        GM.Instance.playerWin = false; // resets playerWin trigger -- used to indicate tie or win
+            var pieceOperator = button.gameObject.GetComponent<PieceOperator>();
+            pieceOperator.ResetPiece();          
+            GM.Instance.turnManager.Reset(GM.Instance.firstPlayer); //resets counter to 0 if reset button called
+            GM.Instance.playerWin = false; // resets playerWin trigger -- used to indicate tie or win
         }
-
-       
 
         // Reset Array Pieces
         // winText.enabled = false;
