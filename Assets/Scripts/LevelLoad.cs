@@ -9,9 +9,14 @@ public class LevelLoad : MonoBehaviour
 
     public float transitionTime = 1f;
 
+    public CpuHelper cpuLogic;
+
     public void PlayGameVsPlayer() // Gameboard against player 
     {
+        FindObjectOfType<AudioManager>().Play(Sound.SoundType.Select);
+        FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Menu);
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); // passing levelIndex to LoadLevel through GetActiveScene() 
+        FindObjectOfType<AudioManager>().Play(Sound.SoundType.Ready_VO);
 
     }
 
@@ -24,8 +29,9 @@ public class LevelLoad : MonoBehaviour
 
     public void PlayGameVsCPU() // Gameboard against CPU
     {
-        Debug.Log("Player VS CPU");
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2); // goes scene index 2 ( CPU Gameboard ) 
+        Debug.Log("Clicked PlayerVSCPU");
+        cpuLogic.PlayerVsCPU();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
     }
 
     IEnumerator LoadLevel(int levelIndex)
