@@ -14,11 +14,14 @@ public class PieceOperator : MonoBehaviour
     public spinthatbitch spinX;
     public spinthatbitch spinO;
 
+    public static bool cpuChallenger;
+
     public bool SpotTaken;
+
+    public bool cpuTurn;
 
     public void PlacePiece() // OnClick() for each button when its clicked
     {
-
         if(button.interactable == true){
             button.interactable = false; // disables buttons from being clicked
             SpotTaken = true;
@@ -44,7 +47,49 @@ public class PieceOperator : MonoBehaviour
             print("currentTurn.currentState: " + currentTurn.currentState);
             GM.Instance.CheckWinConditions();  
             currentTurn.NextTurn();
+
+            if(GM.Instance.cpuChallenger)
+            {
+                GM.Instance.cpuTurn = true;
+                GM.Instance.CPUTurn();
+            }
+            
         } 
+    }
+
+    public void CheckCPUTurn()
+    {
+        if(GM.Instance.cpuTurn)
+        {
+            Debug.Log("CHECKCPUTURN");
+            if(button.interactable == true){
+            button.interactable = false; // disables buttons from being clicked
+            SpotTaken = true;
+
+            switch(currentTurn.currentState)
+            { 
+            case PlayerPiece.O: // X Turn
+                print("O's Turn");
+                GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
+                OPiece.SetActive(true);
+                FindObjectOfType<AudioManager>().Play(Sound.SoundType.oMove);
+
+                break;
+
+            case PlayerPiece.X:
+                print("X's Turn");
+                GM.Instance.xArray.Add(spaceNumber); // Add indicated spaceNumber to XArray
+                XPiece.SetActive(true);
+                FindObjectOfType<AudioManager>().Play(Sound.SoundType.xMove);
+                break;
+            }
+
+            print("currentTurn.currentState: " + currentTurn.currentState);
+            GM.Instance.CheckWinConditions();  
+            currentTurn.NextTurn();
+            GM.Instance.cpuTurn = false;
+            }
+        }
     }
 
     public void ResetPiece()

@@ -7,8 +7,6 @@ public class CpuHelper : MonoBehaviour
 {
     public static CpuHelper instance;
 
-
-    public bool vsCPU;
     void Awake()
     {
         if (instance == null)
@@ -30,7 +28,5 @@ public class CpuHelper : MonoBehaviour
         FindObjectOfType<AudioManager>().Play(Sound.SoundType.Select);
         FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Menu);
         FindObjectOfType<AudioManager>().Play(Sound.SoundType.Ready_VO);
-        vsCPU = true;
-        Debug.Log("VS CPU CHOSEN. vsCPU is now: " + vsCPU);
     }
 }

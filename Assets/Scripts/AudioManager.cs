@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
 
     public void Play (Sound.SoundType soundType)
     {
-        Sound[] s = Array.FindAll<Sound>(sounds, sound => sound.soundType == soundType); //this called a lambda function 
+        Sound[] s = Array.FindAll<Sound>(sounds, sound => sound.soundType == soundType); //the sound => ... is called a lambda function 
         if (s == null || s.Length <= 0)
         {
             Debug.LogWarning($"Sound: {soundType} not found!");
@@ -84,7 +84,7 @@ public class AudioManager : MonoBehaviour
             case Sound.SoundType.GameStart_VO:
             case Sound.SoundType.Explode_VO:
             case Sound.SoundType.Obliteration_VO:
-            // go into the Boice over VO Track
+            // go into the Voice over VO Track
             voiceOver.Stop();
             SetAudioToTrack(voiceOver, chosenSound);
             voiceOver.Play();

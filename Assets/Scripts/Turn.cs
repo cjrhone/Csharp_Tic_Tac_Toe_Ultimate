@@ -17,6 +17,16 @@ public class Turn : MonoBehaviour
         currentState = firstPlayer;
     }
 
+    // public void CheckCPU()
+    // {
+    //     // if(GM.Instance.cpuChallenger)
+    //     // {
+    //     //     GM.Instance.CPUTurn();
+    //     //     cpuTurn = false;
+    //     // }
+
+    // }
+
     public PlayerPiece NextTurn()
     {
         if(currentState == PlayerPiece.O)
@@ -31,6 +41,7 @@ public class Turn : MonoBehaviour
         Debug.Log("currentState: " + currentState + "PlayerPiece: " + PlayerPiece.O);
         turnNumber++;
         currentState = (PlayerPiece)(((int)currentState + 1 ) % (int)PlayerPiece.PLAYER_PIECE_COUNT); //Modulo number depends on number of choices. 2 because X or O
+        // cpuTurn = true;
 
         // Debug.Log("current state: " + currentState);
 

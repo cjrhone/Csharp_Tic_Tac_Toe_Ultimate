@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -64,18 +65,45 @@ public class GM : MonoBehaviour
     public HealthBar oHealthBar; // O HEALTH BAR REFERENCE 
     public static int maxHealth = 25; // DEFAULT MAX HEALTH
 
+    public LevelLoad isVsCPU;
+
+    public bool cpuChallenger = true;
+
+    public bool cpuTurn;
+
     void Start()
     {
         // A GOOD PLACE FOR A COROUTINE
+        // foreach(var space in gridSpaces)
+        // {
+        //     var cpuTurn = space.GetComponent<PieceOperator>();
+        //     cpuTurn.PlacePiece();
+        //     Debug.Log(space);
+        // }
+
+        // PieceOperator chosenSpace = chosenSpace.spaceNumber[0] 
+
+        // CPU Challenger Logic 
+        // if(gridSpaces.Length > 1 ){
+        //     //Randomize 
+        //     var count = gridSpaces.Length;
+        //     var spotToTake = UnityEngine.Random.Range(0, count - 1);
+
+        //     while(gridSpaces[spotToTake].SpotTaken == true) //checks if spot is taken
+        //     {
+        //         Debug.Log(gridSpaces[spotToTake] + " spot is taken");
+        //         spotToTake = UnityEngine.Random.Range(0, count - 1);
+        //     }
+    
+        //     gridSpaces[spotToTake].PlacePiece();
+        //     Debug.Log("CPU has Chosen: " + gridSpaces[spotToTake]);
+        // }
 
         print("STARTING: maxHealth: " + maxHealth);
 
         xHealthBar.Initialize(maxHealth);
         oHealthBar.Initialize(maxHealth);
 
-        print("O Current Health: " + oHealthBar.playerHealth);
-        print("X Current Health: " + xHealthBar.playerHealth);
-        print("Max Health: " + maxHealth);
         xScore.text = "X Wins: " + xWins; 
         oScore.text = "O Wins: " + oWins;  
         turnManager.Reset(firstPlayer);
@@ -194,6 +222,39 @@ public class GM : MonoBehaviour
         /////////////////
 
         //END CASES
+    }
+
+    public void CPUTurn()
+    {
+        if(cpuChallenger)
+        {
+
+            if(gridSpaces.Length > 1 ){
+                StartCoroutine(WaitForTurn());
+                var notTakenSpaces = Array.FindAll<PieceOperator>(gridSpaces, gridSpace => gridSpace.SpotTaken == false );
+                //Randomize 
+                var count = notTakenSpaces.Length;
+                //TODO: Check if there are any spots left, (Length > 0 && != null) if there aren't, exit from this if statement at least
+                // And Logic to check if player has won already 
+                var spotToTake = UnityEngine.Random.Range(0, count - 1);
+
+                notTakenSpaces[spotToTake].CheckCPUTurn();
+                Debug.Log("CPU has Chosen: " + notTakenSpaces[spotToTake]);
+            }
+
+        } else
+        {
+            Debug.Log("cpuChallenger: " + cpuChallenger);
+        }
+        StopCoroutine(WaitForTurn());
+    }
+
+    public IEnumerator WaitForTurn()
+    {
+        Debug.Log("WAIT FOR TURN INITIATED...");
+        yield return new WaitForSeconds(5f);
+        Debug.Log("ENDING INITIATED...");
+
     }
 
     public void CheckWinConditions()

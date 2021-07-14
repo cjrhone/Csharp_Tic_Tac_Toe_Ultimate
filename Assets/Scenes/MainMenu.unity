@@ -2334,6 +2334,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1486282572}
+        m_TargetAssemblyTypeName: CpuHelper, Assembly-CSharp
+        m_MethodName: PlayerVsCPU
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &981598672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3065,7 +3077,7 @@ PrefabInstance:
     - target: {fileID: 1448603569377910302, guid: 79f12c9335d28ac4d98fe54306011d76,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.5
+      value: -14.6
       objectReference: {fileID: 0}
     - target: {fileID: 1448603569377910302, guid: 79f12c9335d28ac4d98fe54306011d76,
         type: 3}
@@ -3475,6 +3487,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1486282571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1486282573}
+  - component: {fileID: 1486282572}
+  m_Layer: 0
+  m_Name: CPUHelper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1486282572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486282571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41990928ade197241acb04707ca37867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1486282573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486282571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1251.0868, y: 962.082, z: 181.61957}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1510620016
 GameObject:
@@ -4446,6 +4501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 394576731}
   transitionTime: 1
+  vsCPU: 0
 --- !u!1001 &8806487149451810933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4461,7 +4517,7 @@ PrefabInstance:
     - target: {fileID: 4218806416026971269, guid: 1af642e8ded06354eafb4d89c7dfc34d,
         type: 3}
       propertyPath: m_Name
-      value: LevelLoader
+      value: LevelLoad
       objectReference: {fileID: 0}
     - target: {fileID: 8445877326069026926, guid: 1af642e8ded06354eafb4d89c7dfc34d,
         type: 3}

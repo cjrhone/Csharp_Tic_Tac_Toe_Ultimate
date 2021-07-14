@@ -9,7 +9,8 @@ public class LevelLoad : MonoBehaviour
 
     public float transitionTime = 1f;
 
-    public CpuHelper cpuLogic;
+    public bool vsCPU;
+
 
     public void PlayGameVsPlayer() // Gameboard against player 
     {
@@ -30,8 +31,8 @@ public class LevelLoad : MonoBehaviour
     public void PlayGameVsCPU() // Gameboard against CPU
     {
         Debug.Log("Clicked PlayerVSCPU");
-        cpuLogic.PlayerVsCPU();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+        vsCPU = true;
     }
 
     IEnumerator LoadLevel(int levelIndex)
