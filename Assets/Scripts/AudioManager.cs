@@ -84,6 +84,8 @@ public class AudioManager : MonoBehaviour
             case Sound.SoundType.GameStart_VO:
             case Sound.SoundType.Explode_VO:
             case Sound.SoundType.Obliteration_VO:
+            case Sound.SoundType.XWin_VO:
+            case Sound.SoundType.OWin_VO:
             // go into the Voice over VO Track
             voiceOver.Stop();
             SetAudioToTrack(voiceOver, chosenSound);
@@ -120,6 +122,10 @@ public class AudioManager : MonoBehaviour
             case Sound.SoundType.GameStart_VO:
             case Sound.SoundType.Explode_VO:
             case Sound.SoundType.Obliteration_VO:
+            case Sound.SoundType.XWin_VO:
+            case Sound.SoundType.OWin_VO:
+
+
             // go into the Boice over VO Track
             voiceOver.Stop();
             break;

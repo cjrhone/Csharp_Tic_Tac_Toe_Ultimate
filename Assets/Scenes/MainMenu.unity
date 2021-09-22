@@ -2609,6 +2609,30 @@ MonoBehaviour:
     loop: 0
     soundType: 3
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: eba84e7b0528b934fafbf90f7db04d08, type: 3}
+    volume: 0.27
+    pitch: 1
+    loop: 0
+    soundType: 17
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: eba84e7b0528b934fafbf90f7db04d08, type: 3}
+    volume: 0.27
+    pitch: 1
+    loop: 0
+    soundType: 3
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cd7cc82660a390440ba8d52bad218ca7, type: 3}
+    volume: 0.27
+    pitch: 1
+    loop: 0
+    soundType: 18
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 941e96af66e4c4f43b4f3da26d547bb0, type: 3}
+    volume: 0.27
+    pitch: 1
+    loop: 0
+    soundType: 9
+    source: {fileID: 0}
   fadeSpeed: 1
   backgroundMusic: {fileID: 498281426}
   soundEffects: {fileID: 1172827108}
@@ -4302,7 +4326,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 836675302}
   m_HandleRect: {fileID: 846700948}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -50
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0

@@ -20,7 +20,7 @@ public class Countdown : MonoBehaviour
 
     public void ForceNextTurn()
     {
-        Debug.Log("Times up! Spot has been chosen! It is now " + currentTurn + "'s turn" );
+        // Debug.Log("Times up! Spot has been chosen! It is now " + currentTurn + "'s turn" );
         // Add cube explosion
         // Add turn automatically being chosen
         // Add CheckWinCondition

@@ -69,10 +69,10 @@ public class GM : MonoBehaviour
 
     public bool cpuChallenger = true;
 
-    public bool cpuTurn;
-
+    
     void Start()
     {
+        // Debug.Log("GM Start");
         // A GOOD PLACE FOR A COROUTINE
         // foreach(var space in gridSpaces)
         // {
@@ -99,7 +99,7 @@ public class GM : MonoBehaviour
         //     Debug.Log("CPU has Chosen: " + gridSpaces[spotToTake]);
         // }
 
-        print("STARTING: maxHealth: " + maxHealth);
+        // print("STARTING: maxHealth: " + maxHealth);
 
         xHealthBar.Initialize(maxHealth);
         oHealthBar.Initialize(maxHealth);
@@ -115,35 +115,51 @@ public class GM : MonoBehaviour
     IEnumerator winTextCoroutine()
     {
 
-         if( oHealthBar.playerHealth <= 0 ||
-          xHealthBar.playerHealth <= 0) // PLAYER < 0 HEALTH
+         if( oHealthBar.playerHealth <= 0 ) // if O health = 0 ... X WINS!
         {
+            Debug.Log("X WINS!");
             FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Battle);
             FindObjectOfType<AudioManager>().Play(Sound.SoundType.Victory);
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.XWin_VO);
+
 
             transitionScreen.gameObject.SetActive(true);
-            Debug.Log("ENDING COROUTINE...");
             winText.gameObject.SetActive(true);
             resetGame.gameObject.SetActive(true);
             StopCoroutine(winTextCoroutine()); // STOP Coroutine 
             yield return null;
         }
 
-        else if (playerWin == true)
+        else if( xHealthBar.playerHealth <= 0 ) // if X health = 0 ... O WINS!
         {
-            Debug.Log("INITIATING WAITFORSECONDS...");
+            Debug.Log("X WINS!");
+            FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Battle);
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Victory);
+            FindObjectOfType<AudioManager>().Play(Sound.SoundType.OWin_VO);
+
+            transitionScreen.gameObject.SetActive(true);
+            winText.gameObject.SetActive(true);
+            resetGame.gameObject.SetActive(true);
+            StopCoroutine(winTextCoroutine()); // STOP Coroutine 
+            yield return null;
+
+        }
+
+        else 
+        {
+            Debug.Log("3 Second TRANSITION...");
             transitionScreen.gameObject.SetActive(true);
             yield return new WaitForSeconds(3);
             resetGame.Reset();
             transitionScreen.gameObject.SetActive(false);
 
         }
-        Debug.Log("PlayerWin: " + playerWin);
+        // Debug.Log("PlayerWin: " + playerWin);
         yield return null;
 
     }
 
-    public void GameWin(int[] winningSpots)
+    public void GameWinEffect(int[] winningSpots)
     {
         foreach(int winningSpot in winningSpots){
             gridSpaces[winningSpot].spinX.PlayWinAnimation();
@@ -224,36 +240,36 @@ public class GM : MonoBehaviour
         //END CASES
     }
 
-    public void CPUTurn()
-    {
-        if(cpuChallenger)
-        {
+    // public void CPUTurn()
+    // {
+    //     if(cpuChallenger)
+    //     {
 
-            if(gridSpaces.Length > 1 ){
-                StartCoroutine(WaitForTurn());
-                var notTakenSpaces = Array.FindAll<PieceOperator>(gridSpaces, gridSpace => gridSpace.SpotTaken == false );
-                //Randomize 
-                var count = notTakenSpaces.Length;
-                //TODO: Check if there are any spots left, (Length > 0 && != null) if there aren't, exit from this if statement at least
-                // And Logic to check if player has won already 
-                var spotToTake = UnityEngine.Random.Range(0, count - 1);
+    //         if(gridSpaces.Length > 1 ){
+    //             StartCoroutine(WaitForTurn());
+    //             var notTakenSpaces = Array.FindAll<PieceOperator>(gridSpaces, gridSpace => gridSpace.SpotTaken == false );
+    //             //Randomize 
+    //             var count = notTakenSpaces.Length;
+    //             //TODO: Check if there are any spots left, (Length > 0 && != null) if there aren't, exit from this if statement at least
+    //             // And Logic to check if player has won already 
+    //             var spotToTake = UnityEngine.Random.Range(0, count - 1);
 
-                notTakenSpaces[spotToTake].CheckCPUTurn();
-                Debug.Log("CPU has Chosen: " + notTakenSpaces[spotToTake]);
-            }
+    //             notTakenSpaces[spotToTake].CheckCPUTurn();
+    //             Debug.Log("CPU has Chosen: " + notTakenSpaces[spotToTake]);
+    //         }
 
-        } else
-        {
-            Debug.Log("cpuChallenger: " + cpuChallenger);
-        }
-        StopCoroutine(WaitForTurn());
-    }
+    //     } else
+    //     {
+    //         Debug.Log("cpuChallenger: " + cpuChallenger);
+    //     }
+    //     StopCoroutine(WaitForTurn());
+    // }
 
     public IEnumerator WaitForTurn()
     {
-        Debug.Log("WAIT FOR TURN INITIATED...");
-        yield return new WaitForSeconds(5f);
-        Debug.Log("ENDING INITIATED...");
+        Debug.Log("Initiating WaitForTurn()...");
+        yield return new WaitForSeconds(3f);
+        Debug.Log("ending WaitForTurn()...");
 
     }
 
@@ -272,7 +288,7 @@ public class GM : MonoBehaviour
                             xWins++;
                             xScore.text = "X Wins: " + xWins; 
                             playerWin = true;
-                            GameWin(win); // Passing winning numbers
+                            GameWinEffect(win); // Passing winning numbers
                             oHealthBar.TakeDamage(7);
                             StartCoroutine(winTextCoroutine());
                             FindObjectOfType<AudioManager>().Play(Sound.SoundType.Explode_VO);
@@ -286,7 +302,7 @@ public class GM : MonoBehaviour
                             oWins++;
                             oScore.text = "O Wins: " + oWins; 
                             playerWin = true;
-                            GameWin(win); // Passing winning numbers
+                            GameWinEffect(win); // Passing winning numbers
                             xHealthBar.TakeDamage(7);
                             StartCoroutine(winTextCoroutine());
                             FindObjectOfType<AudioManager>().Play(Sound.SoundType.Obliteration_VO);

@@ -17,15 +17,15 @@ public class HealthBar : MonoBehaviour
        playerHealth = maxHealth;
        slider.maxValue = maxHealth;
        slider.value = playerHealth; 
-       print("HealthBar.cs Initialized, max health: " + maxHealth);
+    //    print("HealthBar.cs Initialized, max health: " + maxHealth);
    }
 
     // Returns the resulting remaining health of the player
     public int TakeDamage(int damage) // Will include TIME BONUS feature for extra damage in the near future
     {
-        print("damage: " + damage);
-        print("playerHealth: " + playerHealth);
-        print("healthbar: " + this);
+        // print("damage: " + damage);
+        // print("playerHealth: " + playerHealth);
+        // print("healthbar: " + this);
         playerHealth -= damage;
         slider.value = playerHealth; 
         return playerHealth;

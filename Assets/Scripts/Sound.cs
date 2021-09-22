@@ -23,7 +23,9 @@ public class Sound
       Menu,
       Select, 
       Battle,
-      Riser
+      Riser,
+      XWin_VO,
+      OWin_VO
    }
 
    public AudioClip clip; // creates reference to audioclip

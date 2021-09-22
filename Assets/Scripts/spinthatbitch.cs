@@ -67,7 +67,7 @@ public class spinthatbitch : MonoBehaviour
         animationStartTimeMSec = Time.time;
         animationEndTimeMSec = animationStartTimeMSec + animationRotationTimeSeconds;
 
-        Debug.Log($"StartTime is {animationStartTimeMSec} End time is {animationEndTimeMSec}");
+        // Debug.Log($"StartTime is {animationStartTimeMSec} End time is {animationEndTimeMSec}");
         //Do special stuff
     }
 

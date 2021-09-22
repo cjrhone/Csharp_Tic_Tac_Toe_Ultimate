@@ -1,0 +1,8 @@
+  7/15/2021 11:18:46 AM: Starting composition “Energy Combine Splash”.
+
+  Output To: C:\Users\cjrh1\OneDrive\Desktop\Csharp_Tic_Tac_Toe_Ultimate\Assets\Renders\Explosion_Test\Energy Combine Splash\Energy Combine Splash_[#####].png    7/15/2021 11:19:52 AM: Finished composition “Energy Combine Splash”.
+
+
+  Total Time Elapsed: 1 Min, 6 Sec
+Log closed on 7/15/2021 at 11:19:52 AM
+

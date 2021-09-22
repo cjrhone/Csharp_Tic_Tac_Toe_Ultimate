@@ -10,6 +10,11 @@ public class Turn : MonoBehaviour
     public GameObject xTurn;
     public GameObject oTurn;
 
+    public void Start()
+    {
+        currentState = PlayerPiece.X;
+    }
+
     public void Reset(PlayerPiece firstPlayer) {
         turnNumber = 1;
         xTurn.SetActive(true);
@@ -38,7 +43,7 @@ public class Turn : MonoBehaviour
             xTurn.SetActive(false);
             oTurn.SetActive(true);
         }
-        Debug.Log("currentState: " + currentState + "PlayerPiece: " + PlayerPiece.O);
+        // Debug.Log("currentState: " + currentState + "PlayerPiece: " + PlayerPiece.O);
         turnNumber++;
         currentState = (PlayerPiece)(((int)currentState + 1 ) % (int)PlayerPiece.PLAYER_PIECE_COUNT); //Modulo number depends on number of choices. 2 because X or O
         // cpuTurn = true;
