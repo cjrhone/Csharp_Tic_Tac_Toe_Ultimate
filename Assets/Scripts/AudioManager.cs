@@ -73,7 +73,9 @@ public class AudioManager : MonoBehaviour
         switch(chosenSound.soundType){
             case Sound.SoundType.Menu:
             case Sound.SoundType.Battle:
+            case Sound.SoundType.Victory:
             //go into BG Music Audio Track
+
             backgroundMusic.Stop();
             SetAudioToTrack(backgroundMusic, chosenSound);
             backgroundMusic.Play();
@@ -94,6 +96,7 @@ public class AudioManager : MonoBehaviour
 
             default: 
             // All other sounds go to SFX Track
+
             soundEffects.Stop();
             SetAudioToTrack(soundEffects, chosenSound);
             soundEffects.Play();

@@ -32,7 +32,7 @@ public class PieceOperator : MonoBehaviour
             switch(currentTurn.currentState)
             { 
             case PlayerPiece.O: // X Turn
-                print("O Piece Placed");
+                // print("O Piece Placed");
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
                 FindObjectOfType<AudioManager>().Play(Sound.SoundType.oMove);
@@ -40,7 +40,7 @@ public class PieceOperator : MonoBehaviour
                 break;
 
             case PlayerPiece.X:
-                print("X Piece Placed");
+                // print("X Piece Placed");
                 GM.Instance.xArray.Add(spaceNumber); // Add indicated spaceNumber to XArray
                 XPiece.SetActive(true);
                 FindObjectOfType<AudioManager>().Play(Sound.SoundType.xMove);
@@ -64,7 +64,7 @@ public class PieceOperator : MonoBehaviour
                     // And Logic to check if player has won already 
                     var spotToTake = UnityEngine.Random.Range(0, count - 1);
 
-                    Debug.Log("CPU has Chosen: " + notTakenSpaces[spotToTake]);
+                    // Debug.Log("CPU has Chosen: " + notTakenSpaces[spotToTake]);
                     notTakenSpaces[spotToTake].CheckCPUTurn();
                     
                 }
@@ -74,11 +74,28 @@ public class PieceOperator : MonoBehaviour
         } 
     }
 
+    IEnumerator CPUThinking()
+    {
+        Debug.Log("The CPU is THINKING...");
+        yield return new WaitForSeconds(3f);
+    }
+
     public void CheckCPUTurn()
     {
+        // Create Case: Player has Won entire game -- Do nothing.
+        // We're eliminating CheckCPUTurn from the CheckWinConditions if eithor of these cases
         if(GM.Instance.cpuChallenger)
         {
             Debug.Log("CHECKING CPUTURN...");
+
+            if(GM.Instance.playerWin == true )
+            {
+                Debug.Log("CPU HAS RECOGNIZED PLAYERWIN!! WELL DONE!");
+                return;
+            } 
+
+            StartCoroutine(CPUThinking()); // CPU waits before placing piece
+
             if(button.interactable == true){
             button.interactable = false; // disables buttons from being clicked
             SpotTaken = true;
@@ -86,14 +103,14 @@ public class PieceOperator : MonoBehaviour
             switch(currentTurn.currentState)
             { 
             case PlayerPiece.O: // X Turn
-                print("O Piece Placed (CPU)");
+                // print("O Piece Placed (CPU)");
                 GM.Instance.oArray.Add(spaceNumber); // Add indicated spaceNumber to oArray
                 OPiece.SetActive(true);
                 FindObjectOfType<AudioManager>().Play(Sound.SoundType.oMove);
                 break;
 
             case PlayerPiece.X:
-                print("X Piece Placed (CPU)");
+                // print("X Piece Placed (CPU)");
                 GM.Instance.xArray.Add(spaceNumber); // Add indicated spaceNumber to XArray
                 XPiece.SetActive(true);
                 FindObjectOfType<AudioManager>().Play(Sound.SoundType.xMove);
@@ -110,9 +127,9 @@ public class PieceOperator : MonoBehaviour
 
     public void ResetPiece()
     {
-        print($"Resetting X Piece: {XPiece}");
+        // print($"Resetting X Piece: {XPiece}");
         XPiece.SetActive(false);
-        print($"Resetting O Piece: {OPiece}");
+        // print($"Resetting O Piece: {OPiece}");
         OPiece.SetActive(false);
         SpotTaken = false;
         button.interactable = true;

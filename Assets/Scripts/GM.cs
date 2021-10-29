@@ -112,8 +112,9 @@ public class GM : MonoBehaviour
     }
 
     //PLAYER WIN
-    IEnumerator winTextCoroutine()
+    IEnumerator winTextCoroutine() //BUG goinng through winTextCoroutine Twice
     {
+        Debug.Log("WinTextCoroutine");
 
          if( oHealthBar.playerHealth <= 0 ) // if O health = 0 ... X WINS!
         {
@@ -132,7 +133,7 @@ public class GM : MonoBehaviour
 
         else if( xHealthBar.playerHealth <= 0 ) // if X health = 0 ... O WINS!
         {
-            Debug.Log("X WINS!");
+            Debug.Log("O WINS!");
             FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Battle);
             FindObjectOfType<AudioManager>().Play(Sound.SoundType.Victory);
             FindObjectOfType<AudioManager>().Play(Sound.SoundType.OWin_VO);
@@ -173,21 +174,21 @@ public class GM : MonoBehaviour
         // ROWS - Horizontal | COLUMNS - Vertical
         if(winningSpots == WinningNumbers[0])
         {
-            Debug.Log("{0,1,2}"); // TOP Row win
+            // Debug.Log("{0,1,2}"); // TOP Row win
 
             //ADD Horizontal | TOP Row | Animation
         }
 
         else if(winningSpots == WinningNumbers[1])
         {
-            Debug.Log("{3,4,5}");// MIDDLE Row win
+            // Debug.Log("{3,4,5}");// MIDDLE Row win
 
              //ADD Horizontal | MIDDLE Row | Animation
              // ADD Scanner to find XPiece or OPiece
         }
         else if(winningSpots == WinningNumbers[2])
         {
-            Debug.Log("{6,7,8}"); // BOTTOM Row win
+            // Debug.Log("{6,7,8}"); // BOTTOM Row win
 
             //ADD Horizontal | BOTTOM Row | Animation
             // ADD Scanner to find XPiece or OPiece
@@ -195,7 +196,7 @@ public class GM : MonoBehaviour
         }
         else if(winningSpots == WinningNumbers[3])
         {
-            Debug.Log("{0,3,6}"); // LEFT Column win
+            // Debug.Log("{0,3,6}"); // LEFT Column win
 
             // ADD VERTICAL | LEFT Column | Animation
             // ADD Scanner to find XPiece or OPiece
@@ -203,7 +204,7 @@ public class GM : MonoBehaviour
         }
         else if(winningSpots == WinningNumbers[4])
         {
-            Debug.Log("{1,4,7}"); // MIDDLE Column win
+            // Debug.Log("{1,4,7}"); // MIDDLE Column win
 
             // ADD VERTICAL | MIDDLE Column | Animation
             // ADD Scanner to find XPiece or OPiece
@@ -211,7 +212,7 @@ public class GM : MonoBehaviour
         }
         else if(winningSpots == WinningNumbers[5]) // RIGHT Column win
         {
-            Debug.Log("{2,5,8}");
+            // Debug.Log("{2,5,8}");
 
             // ADD VERTICAL | RIGHT Column | Animation 
             // ADD Scanner to find XPiece or OPiece
@@ -219,7 +220,7 @@ public class GM : MonoBehaviour
         }
         else if(winningSpots == WinningNumbers[6])
         {
-            Debug.Log("{0,4,8}"); // TOP LEFT to BOTOM RIGHT win
+            // Debug.Log("{0,4,8}"); // TOP LEFT to BOTOM RIGHT win
 
             // ADD DIAGONAL | TOP LEFT to BOTTOM RIGHT | Animation
             // ADD Scanner to find XPiece or OPiece
@@ -228,7 +229,7 @@ public class GM : MonoBehaviour
 
           else if(winningSpots == WinningNumbers[7])
         {
-            Debug.Log("{2,4,6}"); // BOTTOM LEFT to TOP RIGHT
+            // Debug.Log("{2,4,6}"); // BOTTOM LEFT to TOP RIGHT
 
             // ADD DIAGONAL | BOTTOM LEFT to TOP RIGHT | Animation
             // ADD Scanner to find XPiece or OPiece
@@ -267,57 +268,57 @@ public class GM : MonoBehaviour
 
     public IEnumerator WaitForTurn()
     {
-        Debug.Log("Initiating WaitForTurn()...");
+        // Debug.Log("Initiating WaitForTurn()...");
         yield return new WaitForSeconds(3f);
-        Debug.Log("ending WaitForTurn()...");
+        // Debug.Log("ending WaitForTurn()...");
 
     }
 
     public void CheckWinConditions()
     {
-        resetTimer.ResetTimer();
 
-        foreach(var space in gridSpaces)
-            {
+        foreach(int[] win in WinningNumbers)
+        {
+            Debug.Log("CHECKING WINNING NUMBERS");
 
-                foreach(int[] win in WinningNumbers)
+                if(xArray.Contains(win[0]) && xArray.Contains(win[1]) && xArray.Contains(win[2])) // 3 Space Winning combinations
                 {
-                        if(xArray.Contains(win[0]) && xArray.Contains(win[1]) && xArray.Contains(win[2])) // 3 Space Winning combinations
-                        {
-                            print("X Player -- Well Done.");
-                            xWins++;
-                            xScore.text = "X Wins: " + xWins; 
-                            playerWin = true;
-                            GameWinEffect(win); // Passing winning numbers
-                            oHealthBar.TakeDamage(7);
-                            StartCoroutine(winTextCoroutine());
-                            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Explode_VO);
+                    // print("X Player -- Well Done.");
+                    xWins++;
+                    xScore.text = "X Wins: " + xWins; 
+                    playerWin = true;
+                    GameWinEffect(win); // Passing winning numbers
+                    oHealthBar.TakeDamage(7);
+                    Debug.Log("O Health Bar: "+ oHealthBar.playerHealth);
 
-                            return;
-                        }
+                    StartCoroutine(winTextCoroutine());
+                    FindObjectOfType<AudioManager>().Play(Sound.SoundType.Explode_VO);
 
-                        if(oArray.Contains(win[0]) && oArray.Contains(win[1]) && oArray.Contains(win[2]))  // 3 Space Winning Combination
-                        {
-                            print("O Player -- Well Done.");
-                            oWins++;
-                            oScore.text = "O Wins: " + oWins; 
-                            playerWin = true;
-                            GameWinEffect(win); // Passing winning numbers
-                            xHealthBar.TakeDamage(7);
-                            StartCoroutine(winTextCoroutine());
-                            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Obliteration_VO);
-
-                            return;
-                        }
-               
+                    return;
                 }
 
-    }
+                if(oArray.Contains(win[0]) && oArray.Contains(win[1]) && oArray.Contains(win[2]))  // 3 Space Winning Combination
+                {
+                    // print("O Player -- Well Done.");
+                    oWins++;
+                    oScore.text = "O Wins: " + oWins; 
+                    playerWin = true;
+                    GameWinEffect(win); // Passing winning numbers
+                    xHealthBar.TakeDamage(7);
+                    Debug.Log("X Health Bar: "+ xHealthBar.playerHealth);
+
+                    StartCoroutine(winTextCoroutine());
+                    FindObjectOfType<AudioManager>().Play(Sound.SoundType.Obliteration_VO);
+
+                    return;
+                }
+        
+        }
 
         if(turnManager.turnNumber == 9 && playerWin == false) // TIE GAME will FLASH each gameobject then RESET the game 
         {
             //Insert flash VFX for all pieces
-            Debug.Log("TIE GAME!!");
+            // Debug.Log("TIE GAME!!");
             turnManager.Reset(firstPlayer);
             resetGame.Reset();
             FindObjectOfType<AudioManager>().Play(Sound.SoundType.Tie);

@@ -22,6 +22,7 @@ public class ResetGame : MonoBehaviour
     {
         if(resetButton.activeSelf == true) // IF RESET BUTTON VISIBLE -- HIDE IT!
         {
+            Debug.Log("!!!!!!!!!!!!!!!!!!Reset!!!!!!!!!!!!!!!!!!!!!");
             resetButton.SetActive(false);
             FindObjectOfType<AudioManager>().Play(Sound.SoundType.Battle);
             FindObjectOfType<AudioManager>().Play(Sound.SoundType.Select);
@@ -50,6 +51,8 @@ public class ResetGame : MonoBehaviour
 
     public void ReplayButton()
     {
+        Debug.Log("Replay Button Initiated");
+
         transitionScreen.SetActive(false);
         winText.gameObject.SetActive(false);
         Reset();
