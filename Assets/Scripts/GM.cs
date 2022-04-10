@@ -108,7 +108,7 @@ public class GM : MonoBehaviour
         oScore.text = "O Wins: " + oWins;  
         turnManager.Reset(firstPlayer);
         //TODO: subscribe to resetTimer's "broadcasting" of time being up, so that we can choose a random move
-        FindObjectOfType<AudioManager>().Play(Sound.SoundType.Battle);
+        FindObjectOfType<AudioManager>()?.Play(Sound.SoundType.Battle);
     }
 
     //PLAYER WIN
@@ -119,9 +119,9 @@ public class GM : MonoBehaviour
          if( oHealthBar.playerHealth <= 0 ) // if O health = 0 ... X WINS!
         {
             Debug.Log("X WINS!");
-            FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Battle);
-            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Victory);
-            FindObjectOfType<AudioManager>().Play(Sound.SoundType.XWin_VO);
+            FindObjectOfType<AudioManager>()?.StopPlaying(Sound.SoundType.Battle);
+            FindObjectOfType<AudioManager>()?.Play(Sound.SoundType.Victory);
+            FindObjectOfType<AudioManager>()?.Play(Sound.SoundType.XWin_VO);
 
 
             transitionScreen.gameObject.SetActive(true);
@@ -134,9 +134,9 @@ public class GM : MonoBehaviour
         else if( xHealthBar.playerHealth <= 0 ) // if X health = 0 ... O WINS!
         {
             Debug.Log("O WINS!");
-            FindObjectOfType<AudioManager>().StopPlaying(Sound.SoundType.Battle);
-            FindObjectOfType<AudioManager>().Play(Sound.SoundType.Victory);
-            FindObjectOfType<AudioManager>().Play(Sound.SoundType.OWin_VO);
+            FindObjectOfType<AudioManager>()?.StopPlaying(Sound.SoundType.Battle);
+            FindObjectOfType<AudioManager>()?.Play(Sound.SoundType.Victory);
+            FindObjectOfType<AudioManager>()?.Play(Sound.SoundType.OWin_VO);
 
             transitionScreen.gameObject.SetActive(true);
             winText.gameObject.SetActive(true);
